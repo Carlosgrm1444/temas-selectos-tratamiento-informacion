@@ -1,0 +1,38 @@
+Ortega García - Núñez López - Rodríguez Macias
+<class 'pandas.DataFrame'>
+RangeIndex: 50 entries, 0 to 49
+Data columns (total 5 columns):
+ #   Column           Non-Null Count  Dtype
+---  ------           --------------  -----
+ 0   id_lote          50 non-null     int64
+ 1   id_producto      50 non-null     str  
+ 2   numero_lote      49 non-null     str  
+ 3   fecha_recepcion  50 non-null     str  
+ 4   fecha_caducidad  50 non-null     str  
+dtypes: int64(1), str(4)
+memory usage: 2.1 KB
+Dimensiones: (50, 5)
+   id_lote     id_producto numero_lote fecha_recepcion fecha_caducidad
+0        1               1         NaN      2026-07-05      2027-07-05
+1        2               2    LOT002        2026-01-29      2027-01-29
+2        3               3      lot003      2026-06-05      2027-06-05
+3        4               4      LOT004      15/03/2026      2027-02-21
+4        5  producto cinco      LOT005      2026-01-27      2027-01-27
+5        6             999      LOT006      2026-07-13      2027-07-13
+6        7               7      LOT007      2026-06-03      2025-01-01
+7        8               8      LOT008      2026-02-30      2027-06-18
+8        9               9      LOT009      2025-12-01      2027-05-16
+9       10              10      LOT010      2026-05-25      2027-05-25
+Valores nulos por columna:
+id_lote            0
+id_producto        0
+numero_lote        1
+fecha_recepcion    0
+fecha_caducidad    0
+dtype: int64
+Duplicados exactos adicionales: 1
+    id_lote id_producto numero_lote fecha_recepcion fecha_caducidad
+49       21          21      LOT021      2026-04-04      2027-04-04
+Fechas que requieren revisión en fecha_recepcion: 2
+Fechas que requieren revisión en fecha_caducidad: 0
+La columna contiene texto o tipos mezclados; falta resolver su conversión segura.

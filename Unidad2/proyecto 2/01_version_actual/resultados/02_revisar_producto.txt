@@ -1,0 +1,38 @@
+Ortega García - Núñez López - Rodríguez Macias
+<class 'pandas.DataFrame'>
+RangeIndex: 50 entries, 0 to 49
+Data columns (total 6 columns):
+ #   Column          Non-Null Count  Dtype
+---  ------          --------------  -----
+ 0   id_producto     50 non-null     int64
+ 1   clave_producto  50 non-null     str  
+ 2   nombre          49 non-null     str  
+ 3   presentacion    50 non-null     str  
+ 4   precio          49 non-null     str  
+ 5   activo          50 non-null     int64
+dtypes: int64(2), str(4)
+memory usage: 2.5 KB
+Dimensiones: (50, 6)
+   id_producto clave_producto        nombre presentacion      precio  activo
+0            1         BEB001           NaN       355 ml      116.11       1
+1            2         BEB002       Pepsi         355 ml       59.43       1
+2            3         BEB003          7 Up       600 ML      139.37       1
+3            4         BEB004      Gatorade       355 ml  sin precio       1
+4            5         BEB005  Mountain Dew       355 ml         -25       1
+5            6         BEB006         Pepsi       600 ml       33.73       3
+6            7         BEB007       Mirinda       600 ml         NaN       1
+7            8       beb008            7 Up       600 ml      185.59       1
+8            9         BEB009      Gatorade       600 ml       40.84       1
+9           10         BEB010  Mountain Dew       600 ml      129.82       1
+Valores nulos por columna:
+id_producto       0
+clave_producto    0
+nombre            1
+presentacion      0
+precio            1
+activo            0
+dtype: int64
+Duplicados exactos adicionales: 1
+    id_producto clave_producto nombre presentacion precio  activo
+49           21         BEB021  Pepsi     2 litros  39.72       1
+La columna contiene texto o tipos mezclados; falta resolver su conversión segura.

@@ -1,0 +1,60 @@
+Project inventario_impresion3d {
+  database_type: "SQLServer"
+  Note: "Inventario basado en movimientos (kardex simple) para productos de impresión 3D."
+}
+
+Table tipo_producto {
+  CAMPO DOMINIO
+  id_tipo_producto PK_int [pk, increment]
+  nombre varchar(80) [not null, unique] // Llavero, Lampara, Figura, etc.
+  descripcion varchar(255)
+  activo bit [not null, default: 1]
+  creado_en datetime [not null, default: `GETDATE()`]
+}
+
+Table producto {
+  CAMPO DOMINIO
+  id_producto PK_int [pk, increment]
+  id_tipo_producto FK_int [not null, ref: > tipo_producto.id_tipo_producto]
+
+  nombre varchar(120) [not null]
+  descripcion varchar(500)
+
+  // Costeo (opcionales, pero útiles)
+  costo_material decimal(10,2)
+  costo_total decimal(10,2) // si lo quieres fijo; si no, se calcula aparte
+  precio_venta decimal(10,2)
+
+  activo bit [not null, default: 1]
+  creado_en datetime [not null, default: `GETDATE()`]
+
+  Indexes {
+    (id_tipo_producto)
+    (nombre)
+  }
+}
+
+Table tipo_movimiento {
+  CAMPO DOMINIO
+  id_tipo_movimiento PK_int [pk, increment]
+  nombre varchar(60) [not null] // Ingreso, Egreso, Ajuste
+  factor smallint [not null] // 1 o -1 normalmente
+  descripcion varchar(255)
+  activo bit [not null, default: 1]
+}
+
+Table movimiento_inventario {
+  CAMPO DOMINIO
+  id_movimiento_inventario PK_bigint [pk, increment]
+  id_producto FK_int [not null, ref: > producto.id_producto]
+  id_tipo_movimiento FK_int [not null, ref: > tipo_movimiento.id_tipo_movimiento]
+
+  fecha datetime [not null, default: `GETDATE()`]
+  cantidad int [not null] // siempre positiva; el signo lo da tipo_movimiento.factor
+  nota varchar(255)
+
+  Indexes {
+    (id_producto, fecha)
+    (id_tipo_movimiento)
+  }
+}

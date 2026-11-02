@@ -1,0 +1,210 @@
+UNIVERSIDAD AUTÓNOMA DE TAMAULIPAS
+FACULTAD DE COMERCIO, ADMINISTRACIÓN Y CIENCIAS SOCIALES
+
+
+
+
+                   ACTIVIDAD 5
+                       Auditorias
+
+
+
+
+        Dato                                  Información
+     Asignatura              Temas Selectos de Tratamiento de Información
+      Docente                     Athala Dulce Edith Gómez Arellano
+     Integrantes                       Ortega García Juan Manuel
+                             Licenciatura en Tecnologías de la Información -
+  Carrera y semestre
+                                               9.º semestre
+       Campus                                 Nuevo Laredo
+        Fecha                           09 de septiembre de 2026
+Auditorias
+Auditar significa examinar procesos, cuentas,etc. En el caso de la base de datos “auditar” es
+un proceso vital para mantener la integridad de los datos, es una acción importante para la
+triada de la seguridad y cumplir con requisitos como por ejemplo la certificación de la norma
+ISO 27000-1.
+
+
+
+Auditar en SQL SERVER
+En SQL SERVER existen diversas formas de auditar, Unas más óptimas que otras.
+   ●​ Profiler: actualmente en desuso.
+   ●​ C2: el cual genera muchos archivos y no se recomienda trabajar con el
+   ●​ Auditoría en el servidor/base de datos
+   ●​ Eventos extendidos
+
+
+
+SQL Profiler
+SQL Profiler no viene integrada en el management studio, viene en una aplicación aparte.
+dentro de él se manejan los trece los cuales generan archivos con extensión .trc
+
+
+
+
+                                  Figura 1: File-New Trace
+
+Para poder visualizar la información de los archivos .trc se puede ejecutar de la siguiente
+instrucción
+
+select * from fn_trace_gettable (‘ubicacion’,default)
+Configurar C2
+Para configurar el C2 simplemente se entra a las propiedades del servidor y se habilita la
+opción “habilitar seguimiento auditoría C2”, después se debe reiniciar el servidor.
+
+
+
+
+                        Figura 2: Abrir propiedades del servidor
+
+
+
+
+    Figura 3: Seguridad y darle a la casilla de habilitar seguimiento de auditoría C2
+Servidor de auditoría
+Sirve como archivo de almacenamiento de los diferentes contadores de auditorías que puedes
+crear.
+
+
+
+
+Auditar el servidor
+Paso 1. Desplegar la opción de “seguridad/security”
+
+
+
+
+                          Figura 4: desplegar security/seguridad
+
+Paso 2. Ubicandome en la carpeta “auditoría”, clic derecho y se selecciona “nueva auditoría”
+
+
+
+
+                         Figura 5: nueva auditoría en seguridad
+
+Paso 3. Nos aparece la siguiente ventana. Se nos pone un nombre por defecto el cual debe ser
+unico. Y nos permite configurar:
+                       Figura 6: Menú default de la nueva auditoría
+
+   ●​ ¿Qué hacer cuando ocurre un error?
+En este caso está bien continuar
+   ●​ ¿En donde se pueden ubicar los archivos de auditoría?
+En este caso será “C\Data
+
+
+
+
+                   Figura 7: Ubicar los archivos de auditoría en C\Data
+
+Paso 4. Una vez ya indicada la ruta se crea la auditoría
+                             Figura 8: Auditoría deshabilitada
+
+Paso 5. Se habilita la auditoría, debido a que siempre se crea deshabilitada
+
+
+
+
+                       Figura 9: Auditoría habilitada correctamente
+
+Paso 6. Continuamos ahora con las opciones que desean habilitar. Para ello seleccionamos
+“especificaciones de auditoría del servidor”
+
+
+
+
+                                          Figura 10
+
+Paso 7. Se le da clic derecho y se selecciona la opción “Nueva especificación de auditoría de
+servidor”
+
+
+
+
+                                Figura 11: Desplegar el menú
+
+Paso 8. Al dar clic nos aparece la siguiente ventana
+                                 Figura 12: Auditoría Vacía
+
+Primero seleccionamos el “servidor de auditoría”
+luego seleccionamos el tipo de acción a auditar
+    ●​ Transaction _commit_group
+    ●​ user_change_password_group
+    ●​ Backup_restore_group
+    ●​ Failed_login_group
+
+
+
+
+                           Figura 13: Seleccionamos las opciones
+
+Paso 9. Se le da clic en “aceptar”, después se procede a vigilar las acciones.
+para ello se debe habilitar clic derecho “habilitar especificación de auditoría”
+
+
+
+
+                            Figura 14: habilitar la especificación
+
+Luego nos regresamos al servidor de auditoría creado, se le da clic derecho y seleccionamos
+“ver registros de auditoría”
+                           Figura 15: Registros de auditoría​
+
+Paso 10. Nos aparece la siguiente ventana la cual nos muestra la fecha, hora del evento,
+nombre de la instancia, id de acción, tipo de clase , entre otros.
+
+
+
+
+                       Figura 16: Registros de la auditoria final
+
+
+
+
+Codigo para ver las auditorias exactas
+
+
+
+
+                              Figura 17: Auditorías creadas
+Codigo para ver los detalles de las auditorías existentes
+
+
+
+
+                             Figura 18: Auditorias especificas
+
+​
+Auditar una sola base de datos específica
+
+
+Paso 1. Dentro de la base de datos del proyecto llamada hospital sql, se despliega la carpeta
+de “seguridad/security”, aparece la carpeta “Especificaciones de auditoría de base de datos”.
+
+
+
+
+                    Figura 19. Pestaña de seguridad en base de datos
+Paso 2. Se le da clic derecho y se selecciona la opción de “nueva especificación de auditoría
+de base de datos”.
+
+
+
+
+              Figura 20. Nueva especificación de auditoría en base de datos
+
+Paso 3. Nos aparece la siguiente ventana
+
+
+
+
+                          Figura 21. Menu de creacion de auditoría
+Paso 4. Se procede a seleccionar el servidor de auditoría y a seleccionar el “tipo de acción de
+auditoría” en este caso son:
+   ●​ Update
+   ●​ Delete
+   ●​ Insert
+          Figura 22 y 23. Insert, update y delete y selección de objetos
+Paso 5.
+

@@ -1,0 +1,4 @@
+Ortega García - Núñez López - Rodríguez Macias
+producto: 50 registros
+lote: 50 registros
+inventario_lote: 50 registros

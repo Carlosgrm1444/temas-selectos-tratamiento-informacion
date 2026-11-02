@@ -1,0 +1,51 @@
+﻿id_movimiento,responsable,sucursal,producto,tipo_movimiento,cantidad,precio_unitario,importe_final,fecha_movimiento,total_esperado,diferencia
+1,Bernabé Armando Almonte Padilla,San Clemente de la Montaña,Microfono,Salida,8,2684.16,21473.28,2026-05-26,21473.28,0.0
+2,Gregorio Jurado Esquibel,Vieja Guyana,Camara,Entrada,9,1614.14,14527.26,2026-08-24,14527.26,0.0
+3,Mayte Emilia Domínguez,Vieja Guinea,Mause,Salida,28,3250.19,91005.32,2026-09-14,91005.32,250.0
+4,Dra. Mercedes Esquivel,San Dulce los altos,Monitor,Salida,27,4686.4,126532.8,2026-04-28,126532.8,250.0
+5,Alonso Miguel León,San Ana Luisa de la Montaña,Camara,Entrada,6,2110.44,12662.64,2026-02-23,12662.64,0.0
+6,Luisa Villalobos Mayorga,Vieja Brasil,Mause,Entrada,14,1860.74,26050.36,2026-07-12,26050.36,0.0
+7,Conchita López Rico,Nueva Kazajstán,Camara,Entrada,9,4969.93,44729.37,2026-01-23,44729.37,0.0
+8,Cecilia Partida Bernal,San Rebeca de la Montaña,Audifonos,Salida,10,2879.05,28790.5,2026-03-21,28790.5,0.0
+9,Sra. Itzel Armendáriz,San Jonás los bajos,Monitor,Salida,9,3326.92,29942.28,2026-09-29,29942.28,0.0
+10,Claudio Bahena,Nueva Venezuela,Teclado,Salida,19,995.73,18918.87,2026-06-11,18918.87,250.0
+11,Alta  Gracia Casillas Tafoya,San Cynthia los altos,Teclado,Entrada,5,534.87,2674.35,2026-05-10,2674.35,0.0
+12,Luis Miguel Quiroz,Vieja España,Audifonos,Entrada,8,3794.67,30357.36,2026-02-21,30357.36,0.0
+13,Luis Manuel Ibarra,Vieja Bahamas,Monitor,Entrada,2,2283.43,4566.86,2026-06-03,4566.86,0.0
+14,Marcos Fernando Vega,Vieja Haití,Camara,Salida,19,3501.07,66520.33,2026-05-09,66520.33,250.0
+15,Ing. Julio César Salgado,Vieja Serbia,Camara,Entrada,29,2780.68,80639.72,2026-02-22,80639.72,0.0
+16,Ofelia María Eugenia Páez Orellana,Nueva Eslovenia,Teclado,Entrada,13,1245.4,16190.2,2026-01-04,16190.2,0.0
+17,Roberto Avilés,Nueva Suriname,Microfono,Salida,29,2308.16,66936.64,2026-03-31,66936.64,250.0
+18,Aurelio Aragón Villegas,Vieja República de Macedonia del Norte,Monitor,Salida,29,4806.78,139396.62,2026-06-15,139396.62,250.0
+19,Ing. Augusto Briones,San Carla de la Montaña,Monitor,Entrada,5,538.51,2692.55,2026-04-16,2692.55,0.0
+20,Wilfrido José Emilio Sepúlveda,San Débora los altos,Audifonos,Entrada,25,4186.61,104665.25,2026-01-19,104665.25,0.0
+21,Rodrigo Emilio Nieto,Nueva Turkmenistán,Teclado,Salida,29,1804.47,52329.63,2026-03-30,52329.63,250.0
+22,Abelardo Jacinto Casárez Trejo,Vieja Ucrania,Microfono,Entrada,28,2973.48,83257.44,2026-05-12,83257.44,0.0
+23,Elisa Dueñas Abreu,Vieja República Árabe Siria,Audifonos,Salida,3,4465.36,13396.08,2026-08-01,13396.08,0.0
+24,Carmen Esmeralda Zambrano,San Verónica los bajos,Teclado,Salida,19,2703.87,51373.53,2026-04-28,51373.53,250.0
+25,Daniela Velásquez Montez,Nueva Luxemburgo,Camara,Salida,20,1379.92,27598.4,2026-09-12,27598.4,250.0
+26,Sr. Tomás Almonte,Vieja Brasil,Teclado,Entrada,6,2900.55,17403.3,2026-02-19,17403.3,0.0
+27,Tania Dulce María Madrigal Palomino,Vieja Turkmenistán,Teclado,Entrada,16,4901.11,78417.76,2026-03-26,78417.76,0.0
+28,Mayte Laura Marroquín,San Emilia los bajos,Microfono,Salida,8,2875.88,23007.04,2026-01-04,23007.04,0.0
+29,Julia Rosalia Amaya,Nueva Montenegro,Camara,Salida,6,4625.78,27754.68,2026-09-08,27754.68,0.0
+30,Octavio Zayas,Nueva Filipinas,Mause,Salida,20,2757.14,55142.8,2026-03-23,55142.8,250.0
+31,Ramón Guillen Cotto,Nueva Argentina,Monitor,Salida,2,1537.69,3075.38,2026-01-23,3075.38,0.0
+32,Luis Manuel Cristobal Bonilla Valencia,San Abelardo los altos,Microfono,Entrada,9,701.49,6313.41,2026-02-12,6313.41,0.0
+33,Andrea Núñez,Nueva Gambia,Microfono,Salida,14,1463.34,20486.76,2026-04-17,20486.76,0.0
+34,Ana María Lorena Amaya,San Zoé de la Montaña,Monitor,Entrada,22,2681.65,58996.3,2026-09-19,58996.3,0.0
+35,Gabriel Uribe,Vieja Ucrania,Microfono,Entrada,5,903.21,4516.05,2026-02-20,4516.05,0.0
+36,Patricia Escobedo,Vieja San Vicente y las Granadinas,Monitor,Entrada,27,3905.65,105452.55,2026-03-25,105452.55,0.0
+37,Ing. Octavio Mojica,Nueva Irán,Mause,Entrada,21,3586.9,75324.9,2026-06-29,75324.9,0.0
+38,Angélica Díaz Armas,San Leticia los altos,Microfono,Salida,23,513.95,11820.85,2026-07-13,11820.85,250.0
+39,Sr. Patricio Saucedo,Nueva Estonia,Microfono,Entrada,2,1845.15,3690.3,2026-03-16,3690.3,0.0
+40,José Eduardo Haro,San Teodoro los bajos,Camara,Entrada,1,480.07,480.07,2026-06-14,480.07,0.0
+41,Mercedes Lugo,San Luis Manuel los altos,Camara,Entrada,2,1616.67,3233.34,2026-04-29,3233.34,0.0
+42,Ing. Lucas Parra,San Reina de la Montaña,Monitor,Salida,6,1958.07,11748.42,2026-03-18,11748.42,0.0
+43,Vicente Jacobo Briseño de Jesús,Nueva Gabón,Camara,Salida,3,446.64,1339.92,2026-02-28,1339.92,0.0
+44,Ofelia Delia de la Crúz Cabán,Nueva Burundi,Monitor,Entrada,21,4289.15,90072.15,2026-03-22,90072.15,0.0
+45,Espartaco Fonseca Irizarry,Vieja Seychelles,Monitor,Entrada,19,4967.21,94376.99,2026-07-20,94376.99,0.0
+46,Amador Cruz Báez,San Wendolin los altos,Audifonos,Entrada,25,3184.22,79605.5,2026-01-29,79605.5,0.0
+47,Guillermina Nájera,San Cristal de la Montaña,Mause,Salida,7,1328.67,9300.69,2026-02-19,9300.69,0.0
+48,Srita. Rosalia Montañez,San Asunción los altos,Camara,Salida,12,1996.43,23957.16,2026-01-31,23957.16,0.0
+49,Alberto Carvajal Espino,San Adriana los altos,Audifonos,Entrada,8,1761.52,14092.16,2026-09-13,14092.16,0.0
+50,Ing. Irene Moya,Vieja Trinidad y Tabago,Teclado,Salida,10,3418.22,34182.2,2026-05-02,34182.2,0.0

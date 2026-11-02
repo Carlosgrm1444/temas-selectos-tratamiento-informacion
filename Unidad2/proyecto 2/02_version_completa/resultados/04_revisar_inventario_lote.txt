@@ -1,0 +1,85 @@
+Ortega García - Núñez López - Rodríguez Macias
+<class 'pandas.DataFrame'>
+RangeIndex: 50 entries, 0 to 49
+Data columns (total 6 columns):
+ #   Column               Non-Null Count  Dtype 
+---  ------               --------------  ----- 
+ 0   id_inventario        50 non-null     string
+ 1   id_almacen           50 non-null     string
+ 2   id_lote              50 non-null     string
+ 3   id_producto          50 non-null     string
+ 4   cantidad             49 non-null     string
+ 5   fecha_actualizacion  50 non-null     string
+dtypes: string(6)
+memory usage: 2.5 KB
+Dimensiones: (50, 6)
+       id_inventario id_almacen  ... cantidad  fecha_actualizacion
+count             50         50  ...       49                   50
+unique            49          1  ...       43                    4
+top               21          1  ...      254  2026-10-31 12:00:00
+freq               2         50  ...        2                   47
+
+[4 rows x 6 columns]
+Errores por regla:
+id_inventario_nulo              0
+id_inventario_espacios          0
+id_almacen_nulo                 0
+id_almacen_espacios             0
+id_lote_nulo                    0
+id_lote_espacios                0
+id_producto_nulo                0
+id_producto_espacios            0
+cantidad_nulo                   1
+cantidad_espacios               0
+fecha_actualizacion_nulo        0
+fecha_actualizacion_espacios    1
+duplicado_exacto                2
+clave_primaria_repetida         2
+id_inventario_tipo              0
+id_almacen_tipo                 0
+id_lote_tipo                    0
+id_producto_tipo                0
+cantidad_tipo                   2
+clave_negocio_1_repetida        2
+fecha_actualizacion_invalida    3
+fecha_actualizacion_formato     3
+id_inventario_invalido          0
+id_almacen_invalido             0
+id_lote_invalido                0
+id_producto_invalido            0
+cantidad_invalida               2
+almacen_inexistente             0
+producto_inexistente            4
+lote_inexistente                7
+producto_no_corresponde_lote    0
+actualizacion_fuera_periodo     3
+dtype: Int64
+Filas afectadas:
+id_inventario id_almacen id_lote id_producto cantidad   fecha_actualizacion
+            1          1       1           1     <NA>   2026-10-31 12:00:00
+            2          1       2           2       11  2026-10-31 12:00:00 
+            3          1       3           3      481   31/10/2026 12:00:00
+            4          1       4           4   muchas   2026-10-31 12:00:00
+            5          1       5           5      -12   2026-10-31 12:00:00
+            6          1     999           6       86   2026-10-31 12:00:00
+            7          1       7          40      312   2026-10-31 12:00:00
+            8          1       8           8       59   2026-02-30 12:00:00
+            9          1       9           9      1.5   2026-10-31 12:00:00
+           21          1      21          21      254   2026-10-31 12:00:00
+           21          1      21          21      254   2026-10-31 12:00:00
+Resumen de calidad:
+archivo: inventario_lote
+iniciales: 50
+aptos_antes: 39
+no_aptos_antes: 11
+porcentaje_apto_antes: 78.0
+porcentaje_no_apto_antes: 22.0
+conservados: 42
+corregidos: 2
+sin_cambios: 40
+descartados: 8
+aptos_despues: 42
+no_aptos_despues: 0
+porcentaje_apto_despues: 100.0
+porcentaje_no_apto_despues: 0.0
+Validación final: 0 filas no aptas.

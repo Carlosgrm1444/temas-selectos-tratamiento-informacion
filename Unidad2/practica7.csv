@@ -1,0 +1,42 @@
+﻿id_cliente,estado,producto,cantidad,precio_unitario,subtotal,fecha_envio
+1,Sonora,,42,495.19,20797.98,2026-01-15
+2,Campeche,UVA,69,58.46,4033.74,2026-03-04
+3,Coahuila de Zaragoza,naranja,12,232.53,2790.36,2026-01-27
+4,Chihuahua,naranja,55,40.72,2239.6,04-07-2026
+5,Sonora, manzana ,75,495.7,37177.5,2026-10-13
+6,Nuevo León,pera,6,295.17,-1771.02,2026-02-12
+7,Guerrero, manzana ,16,302.39,4838.24,2026-06-19
+8,Chiapas,uva,82,106.47,8730.54,2026-07-27
+9,Jalisco,pera,73,40.79,2977.67,2026-07-18
+10,Veracruz de Ignacio de la Llave,uva,55,407.4,22407.0,2026-09-27
+11,Guerrero,mango,47,163.31,7675.57,2026-08-16
+12,Zacatecas,plátano,11,304.38,3348.18,2026-08-01
+13,Chihuahua,uva,37,321.9,11910.3,2026-05-03
+14,Zacatecas,pera,97,185.19,17963.43,2026-01-12
+15,Puebla,plátano,86,49.97,4297.42,2026-07-23
+16,Veracruz de Ignacio de la Llave, manzana ,77,264.74,20384.98,2026-09-03
+17,Coahuila de Zaragoza, manzana ,35,252.89,8851.15,2026-08-02
+18,Tlaxcala,plátano,40,341.73,13669.2,2026-07-29
+19,Veracruz de Ignacio de la Llave,plátano,86,187.2,16099.2,2026-02-19
+20,Jalisco,sandía,15,262.7,3940.5,2026-03-25
+21,Sonora,sandía,95,136.5,12967.5,2026-05-25
+22,Nayarit,naranja,22,239.51,5269.22,2026-08-28
+23,Tabasco,plátano,71,152.9,10855.9,2026-07-19
+24,Colima,naranja,49,128.19,6281.31,2026-02-14
+25,Zacatecas,sandía,85,129.1,10973.5,2026-06-22
+26,Durango,pera,34,154.0,5236.0,2026-06-06
+27,Distrito Federal,mango,79,299.4,23652.6,2026-09-08
+28,Campeche,pera,80,345.86,27668.8,2026-09-20
+29,Sonora,pera,100,497.87,49787.0,2026-04-27
+30,Sonora, manzana ,14,256.81,3595.34,2026-02-25
+31,Chihuahua,plátano,27,235.2,6350.4,2026-06-25
+32,Durango,uva,14,10.72,150.08,2026-01-30
+33,Coahuila de Zaragoza,sandía,47,324.3,15242.1,2026-03-02
+34,Morelos,plátano,49,86.81,4253.69,2026-06-25
+35,Zacatecas,pera,61,72.14,4400.54,2026-05-21
+36,Chiapas,mango,40,53.18,2127.2,2026-04-11
+37,Guanajuato,uva,34,255.88,8699.92,2026-01-07
+38,Baja California,sandía,68,195.18,13272.24,2026-06-04
+39,Morelos,uva,83,452.11,37525.13,2026-04-18
+40,México,uva,22,192.98,4245.56,2026-06-08
+7,Guerrero, manzana ,16,302.39,4838.24,2026-06-19

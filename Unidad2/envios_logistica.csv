@@ -1,0 +1,13 @@
+﻿ID_Envio,Cliente,Origen,Destino,Producto,Cantidad,Fecha_Envio,Estado
+1001,Carlos Pérez,Nuevo Laredo,Monterrey,Laptop,2,01/07/2026,Entregado
+1002,Ana López,Monterrey,Saltillo,Monitor,1,02/07/2026,En tránsito
+1003,Luis García,Saltillo,Tampico,Teclado,5,03/07/2026,Entregado
+1004,María Ruiz,Reynosa,Nuevo Laredo,Mouse,10,04/07/2026,Pendiente
+1005,Jorge Díaz,Matamoros,Monterrey,Impresora,1,05/07/2026,Entregado
+1006,Laura Soto,Nuevo Laredo,Reynosa,Laptop,1,06/07/2026,En tránsito
+1007,Pedro León,Monterrey,Saltillo,Disco SSD,3,07/07/2026,Entregado
+1008,Elena Cruz,Tampico,Ciudad Victoria,Router,2,08/07/2026,Pendiente
+1009,Sofía Mora,Reynosa,Matamoros,Memoria USB,8,09/07/2026,Entregado
+1010,Miguel Torres,Saltillo,Nuevo Laredo,Monitor,2,10/07/2026,En tránsito
+1011,Andrea Gil,Monterrey,Reynosa,Laptop,1,11/07/2026,Entregado
+1012,Diego Ramos,Nuevo Laredo,Tampico,Teclado,4,12/07/2026,Pendiente

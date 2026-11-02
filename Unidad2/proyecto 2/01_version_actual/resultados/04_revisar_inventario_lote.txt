@@ -1,0 +1,43 @@
+Ortega García - Núñez López - Rodríguez Macias
+<class 'pandas.DataFrame'>
+RangeIndex: 50 entries, 0 to 49
+Data columns (total 6 columns):
+ #   Column               Non-Null Count  Dtype
+---  ------               --------------  -----
+ 0   id_inventario        50 non-null     int64
+ 1   id_almacen           50 non-null     int64
+ 2   id_lote              50 non-null     int64
+ 3   id_producto          50 non-null     int64
+ 4   cantidad             49 non-null     str  
+ 5   fecha_actualizacion  50 non-null     str  
+dtypes: int64(4), str(2)
+memory usage: 2.5 KB
+Dimensiones: (50, 6)
+   id_inventario  id_almacen  ...  cantidad    fecha_actualizacion
+0              1           1  ...       NaN    2026-10-31 12:00:00
+1              2           1  ...        11   2026-10-31 12:00:00 
+2              3           1  ...       481    31/10/2026 12:00:00
+3              4           1  ...    muchas    2026-10-31 12:00:00
+4              5           1  ...       -12    2026-10-31 12:00:00
+5              6           1  ...        86    2026-10-31 12:00:00
+6              7           1  ...       312    2026-10-31 12:00:00
+7              8           1  ...        59    2026-02-30 12:00:00
+8              9           1  ...       1.5    2026-10-31 12:00:00
+9             10           1  ...        30    2026-10-31 12:00:00
+
+[10 rows x 6 columns]
+Valores nulos por columna:
+id_inventario          0
+id_almacen             0
+id_lote                0
+id_producto            0
+cantidad               1
+fecha_actualizacion    0
+dtype: int64
+Duplicados exactos adicionales: 1
+    id_inventario  id_almacen  ...  cantidad  fecha_actualizacion
+49             21           1  ...       254  2026-10-31 12:00:00
+
+[1 rows x 6 columns]
+Fechas que requieren revisión en fecha_actualizacion: 3
+La columna contiene texto o tipos mezclados; falta resolver su conversión segura.

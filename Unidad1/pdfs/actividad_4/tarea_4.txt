@@ -1,0 +1,150 @@
+UNIVERSIDAD AUTÓNOMA DE TAMAULIPAS
+FACULTAD DE COMERCIO, ADMINISTRACIÓN Y CIENCIAS SOCIALES
+
+
+
+
+                   ACTIVIDAD 4
+                   Planes de mantenimiento
+
+
+
+
+        Dato                                    Información
+     Asignatura                Temas Selectos de Tratamiento de Información
+      Docente                       Athala Dulce Edith Gómez Arellano
+     Integrantes                         Ortega García Juan Manuel
+                               Licenciatura en Tecnologías de la Información -
+  Carrera y semestre
+                                                 9.º semestre
+       Campus                                   Nuevo Laredo
+        Fecha                             03 de septiembre de 2026
+Respaldos
+
+-- 1. Respaldo Completo (Full)
+BACKUP DATABASE hospital_sql
+TO DISK = N'C:\Data\hospital_codigo_full_0309.bak'
+WITH FORMAT, INIT,
+    NAME ='hospital_sql-Full',
+    DESCRIPTION = 'Respaldo Full';
+
+-- 2. Respaldo Diferencial
+BACKUP DATABASE hospital_sql
+TO DISK = 'C:\Data\hospital_codigo_differential_0309.bak'
+WITH DIFFERENTIAL,
+    FORMAT,
+    NAME ='hospital_sql-Differential',
+    DESCRIPTION = 'Respaldo diferencial';
+-- 3. Respaldo de Registro de Transacciones (Log)
+BACKUP LOG hospital_sql
+TO DISK ='C:\Data\hospital_codigo_log_0309.trn'
+WITH FORMAT, INIT,
+    NAME = 'hospital_sql Log Backup',
+    DESCRIPTION = 'Respaldo Log';
+
+Planes de Mantenimiento
+
+El asistente para para planes de mantenimiento permite crear un plan de mantenimiento que
+el agente microsoft SQL SERVER puede ejecutar periódicamente, realizando diversas tareas
+de administración
+
+Configuración
+
+Paso.1 habilitar el agente SQL SERVER
+                                       Imagen 1
+
+Paso.2 Una vez habilitado el agente, procedemos a ir a “administración” y desplegamos la
+carpeta en donde encontramos los “Planes de mantenimiento”.
+
+
+
+
+                                       Imagen 2
+
+Paso.3 Se le da clic derecho y nos despliega el siguiente menú al cual le daremos clic a
+“Asistente para planes de mantenimiento”.
+
+
+
+
+                                       Imagen 3
+
+Paso 4. Nos aparecerá una ventana, la cual debemos llenar tanto los campos de nombre,
+descripción y seleccionar la manera en la cual se ejecutarán las tareas.
+
+nombre: hospital_respaldo
+Descripción: respaldo completo de la base de datos hospital tanto full, differential y log
+
+*una sola programación para todo el plan*
+
+Después se procede a dar click en el botón “cambiar” para indicar la ruta de programación.
+
+
+
+
+                                           Imagen 4
+
+
+
+
+                                          Imagen 4.2
+Paso 5. Se le da click en la siguiente, y debemos seleccionar las acciones.
+
+
+
+
+                                                                              ​
+                                           Imagen 5
+
+Paso 6. Se le da click en siguiente, se ordenan las actividades.
+
+
+
+
+                                           Imagen 6
+
+Paso 7. Se le da click en siguiente y se selecciona la base de datos.
+                                           Imagen 7
+
+Paso 8. Se configura la ruta de respaldo que se encuentra en la pestaña de destino y se le da
+click en siguiente.
+
+
+
+
+                                           Imagen 8
+
+Paso 9. Se le da click en siguiente, y se repiten los pasos 7 y 8, se volverá a emplear la base
+de datos Hospital_sql
+                                           Imagen 9
+
+
+
+
+                                          Imagen 10
+
+Paso 10. Se le da click en siguiente, y se repiten los pasos 7 y 8, se volverá a emplear la base
+de datos Hospital_sql
+                                          Imagen 11
+
+
+
+
+                                          Imagen 12
+
+Paso 11. Se indica la ruta del informe, que en este caso será “C:\data”
+
+
+
+
+                                          Imagen 13
+Paso 12. Una vez terminada la selección de base de datos y rutas, se procede a crear la
+programación.
+
+
+
+
+                                      Imagen 14
+
+Paso 13. iniciamos y ejecutamos el plan de mantenimiento
+

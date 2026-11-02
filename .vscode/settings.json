@@ -1,0 +1,8 @@
+{
+  "code-runner.executorMap": {
+    "python": "\"/media/carlos-rodriguez/nvme0n1p1/2db/Unidad2/.venv/bin/python\" -u"
+  },
+  "code-runner.runInTerminal": true,
+  "python.defaultInterpreterPath": "/media/carlos-rodriguez/nvme0n1p1/2db/Unidad2/.venv/bin/python",
+  "python.terminal.activateEnvironment": true
+}

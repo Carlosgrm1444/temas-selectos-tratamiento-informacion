@@ -1,0 +1,26 @@
+# Entornos locales de Python: se vuelven a crear con requirements.txt.
+.venv/
+.venv_*/
+**/.venv/
+**/.venv_*/
+__pycache__/
+*.py[cod]
+
+# Archivos físicos y respaldos locales de SQL Server.
+# Se generan nuevamente al ejecutar los scripts en cada equipo.
+*.mdf
+*.ldf
+*.ndf
+*.bak
+*.trn
+
+# Archivos temporales del sistema y de VS Code.
+.DS_Store
+.vscode/*.log
+
+# Archivos internos del agente y recursos temporales de generación.
+.agent/
+tmp/
+
+# Configuración local de Database Mail: puede contener una contraseña real.
+Unidad1/Actividad_3_Database_Mail/scripts/actividad_3.sql

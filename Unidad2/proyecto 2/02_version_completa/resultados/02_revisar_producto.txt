@@ -1,0 +1,78 @@
+Ortega García - Núñez López - Rodríguez Macias
+<class 'pandas.DataFrame'>
+RangeIndex: 50 entries, 0 to 49
+Data columns (total 6 columns):
+ #   Column          Non-Null Count  Dtype 
+---  ------          --------------  ----- 
+ 0   id_producto     50 non-null     string
+ 1   clave_producto  50 non-null     string
+ 2   nombre          49 non-null     string
+ 3   presentacion    50 non-null     string
+ 4   precio          49 non-null     string
+ 5   activo          50 non-null     string
+dtypes: string(6)
+memory usage: 2.5 KB
+Dimensiones: (50, 6)
+       id_producto clave_producto nombre presentacion precio activo
+count           50             50     49           50     49     50
+unique          49             49      6           11     48      2
+top             21         BEB021   7 Up     2 litros  39.72      1
+freq             2              2     10            6      2     49
+Errores por regla:
+id_producto_nulo            0
+id_producto_espacios        0
+clave_producto_nulo         0
+clave_producto_espacios     1
+nombre_nulo                 1
+nombre_espacios             1
+presentacion_nulo           0
+presentacion_espacios       0
+precio_nulo                 1
+precio_espacios             0
+activo_nulo                 0
+activo_espacios             0
+duplicado_exacto            2
+clave_primaria_repetida     2
+id_producto_tipo            0
+precio_tipo                 2
+activo_tipo                 0
+clave_producto_formato      1
+nombre_formato              1
+presentacion_formato        1
+clave_producto_longitud     0
+nombre_longitud             0
+presentacion_longitud       0
+clave_negocio_1_repetida    2
+id_producto_invalido        0
+precio_invalido             1
+precio_decimales            0
+activo_invalido             1
+dtype: Int64
+Filas afectadas:
+id_producto clave_producto       nombre presentacion     precio activo
+          1         BEB001         <NA>       355 ml     116.11      1
+          2         BEB002      Pepsi         355 ml      59.43      1
+          3         BEB003         7 Up       600 ML     139.37      1
+          4         BEB004     Gatorade       355 ml sin precio      1
+          5         BEB005 Mountain Dew       355 ml        -25      1
+          6         BEB006        Pepsi       600 ml      33.73      3
+          7         BEB007      Mirinda       600 ml       <NA>      1
+          8       beb008           7 Up       600 ml     185.59      1
+         21         BEB021        Pepsi     2 litros      39.72      1
+         21         BEB021        Pepsi     2 litros      39.72      1
+Resumen de calidad:
+archivo: producto
+iniciales: 50
+aptos_antes: 40
+no_aptos_antes: 10
+porcentaje_apto_antes: 80.0
+porcentaje_no_apto_antes: 20.0
+conservados: 44
+corregidos: 3
+sin_cambios: 41
+descartados: 6
+aptos_despues: 44
+no_aptos_despues: 0
+porcentaje_apto_despues: 100.0
+porcentaje_no_apto_despues: 0.0
+Validación final: 0 filas no aptas.
