@@ -665,13 +665,54 @@ Conservados significa todas las filas que permanecen: corregidos más sin cambio
 La validación final no encontró nulos obligatorios, claves repetidas, valores inválidos ni referencias rotas en los archivos exportados. Esto comprueba las reglas definidas para el ejercicio; no demuestra que los datos ficticios correspondan al inventario real de Pepsi.
 
 
+## EVIDENCIAS DE LA VALIDACIÓN DE LOS CSV
+
+Las siguientes capturas muestran la inspección inicial, las reglas que detectaron errores y el resumen final de los tres archivos. En los tres casos la validación posterior a la limpieza reportó cero filas no aptas.
+
+Figura 74. Inspección inicial del archivo producto.
+
+![Inspección inicial del archivo producto.](../evidencias/ejecucion_equipo/01_producto_estructura.png)
+
+Figura 75. Reglas de calidad detectadas en producto.
+
+![Reglas de calidad detectadas en producto.](../evidencias/ejecucion_equipo/02_producto_reglas.png)
+
+Figura 76. Resultado de limpieza y validación final de producto.
+
+![Resultado de limpieza y validación final de producto.](../evidencias/ejecucion_equipo/03_producto_resultado.png)
+
+Figura 77. Inspección inicial del archivo lote.
+
+![Inspección inicial del archivo lote.](../evidencias/ejecucion_equipo/04_lote_estructura.png)
+
+Figura 78. Reglas de calidad detectadas en lote.
+
+![Reglas de calidad detectadas en lote.](../evidencias/ejecucion_equipo/05_lote_reglas.png)
+
+Figura 79. Resultado de limpieza y validación final de lote.
+
+![Resultado de limpieza y validación final de lote.](../evidencias/ejecucion_equipo/06_lote_resultado.png)
+
+Figura 80. Inspección inicial del archivo inventario_lote.
+
+![Inspección inicial del archivo inventario_lote.](../evidencias/ejecucion_equipo/07_inventario_estructura.png)
+
+Figura 81. Reglas de calidad detectadas en inventario_lote.
+
+![Reglas de calidad detectadas en inventario_lote.](../evidencias/ejecucion_equipo/08_inventario_reglas.png)
+
+Figura 82. Resultado de limpieza y validación final de inventario_lote.
+
+![Resultado de limpieza y validación final de inventario_lote.](../evidencias/ejecucion_equipo/09_inventario_resultado.png)
+
+
 ## EXPORTACIÓN Y REINTEGRACIÓN EN SQL SERVER
 
 Se exportan archivos CSV con index=False para evitar que el índice interno de Pandas se convierta en una columna del almacén. Los acentos se conservan con UTF-8. Los archivos de origen permanecen separados de los resultados corregidos.
 
 La reintegración se prepara en el esquema proyecto_u2 de pepsi_distribucion. Esto mantiene las tablas originales de dbo y evita reemplazar sus datos. Primero se debe ejecutar el código de creación; después, el script Python solicita usuario y contraseña de SQL Server. La contraseña no se escribe en los archivos. El controlador utilizado es ODBC Driver 18 for SQL Server, disponible en Linux.
 
-El orden es almacen, producto, lote e inventario_lote para respetar las relaciones. La carga se realiza en una transacción: si falla una inserción, no se confirma el conjunto. El programa también verifica que el destino esté vacío para evitar cargar los mismos registros dos veces (SQLAlchemy, s. f.). La ejecución autenticada en SQL Server y sus capturas quedan pendientes; los resultados anteriores corresponden a Python.
+El orden es almacen, producto, lote e inventario_lote para respetar las relaciones. La carga se realiza en una transacción: si falla una inserción, no se confirma el conjunto. El programa también verifica que el destino esté vacío para evitar cargar los mismos registros dos veces (SQLAlchemy, s. f.). Las capturas recibidas del equipo confirman la carga de un almacén, 44 productos, 42 lotes y 42 inventarios. Fueron tomadas en Windows con autenticación integrada; el script de este proyecto conserva la adaptación para Linux mediante usuario y contraseña de SQL Server.
 
 ```sql
 -- Proyecto Unidad 2
@@ -819,6 +860,27 @@ finally:
 ```
 
 
+## EVIDENCIAS DE CARGA Y CONSULTAS EN SQL SERVER
+
+La salida de carga confirma la transacción y los conteos de filas exportadas. Las consultas mostradas después verifican que los registros limpios quedaron disponibles en las tablas producto, lote e inventario_lote del esquema proyecto_u2.
+
+Figura 89. Carga confirmada de los datos limpios en SQL Server.
+
+![Carga confirmada de los datos limpios en SQL Server.](../evidencias/ejecucion_equipo/10_carga_sql_server.png)
+
+Figura 90. Consulta de registros cargados en producto.
+
+![Consulta de registros cargados en producto.](../evidencias/ejecucion_equipo/11_consulta_producto.png)
+
+Figura 91. Consulta de registros cargados en lote.
+
+![Consulta de registros cargados en lote.](../evidencias/ejecucion_equipo/12_consulta_lote.png)
+
+Figura 92. Consulta de registros cargados en inventario_lote.
+
+![Consulta de registros cargados en inventario_lote.](../evidencias/ejecucion_equipo/13_consulta_inventario_lote.png)
+
+
 ## CONSULTAS Y EFECTO DE LOS DATOS INCORRECTOS
 
 La primera consulta suma unidades y calcula el valor del inventario por producto. Un precio negativo o una existencia duplicada habría alterado ese valor. La segunda identifica lotes próximos a caducar: una fecha mal interpretada cambia la prioridad de despacho. La tercera calcula promedio, mínimo y máximo de precios; un precio inválido puede distorsionar estos indicadores o impedir el cálculo.
@@ -914,7 +976,7 @@ GO
 
 ```
 
-El archivo contiene tres consultas con WHERE, ORDER BY y agregaciones, además de la tabla temporal y la vista. Sus resultados deberán capturarse después de ejecutar la carga en SQL Server.
+El archivo contiene tres consultas con WHERE, ORDER BY y agregaciones, además de la tabla temporal y la vista. Las evidencias disponibles comprueban la carga y consultas directas de las tres tablas; aún se deben capturar los resultados de las tres consultas solicitadas, de la tabla temporal y de la vista encriptada.
 
 
 ## CONCLUSIÓN ACTUALIZADA

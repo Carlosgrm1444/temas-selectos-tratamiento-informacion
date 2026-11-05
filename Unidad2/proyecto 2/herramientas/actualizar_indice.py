@@ -15,7 +15,13 @@ def normalizar(texto):
 
 for version, render in [('01_version_actual','revision_actual'),('02_version_completa','revision_completa')]:
   docx = ruta / version / 'documentos/Proyecto_Unidad_2.docx'
-  pdf = ruta / 'herramientas' / render / 'Proyecto_Unidad_2.pdf'
+  # Si existe una revisión más reciente de la versión completa, usarla.
+  carpeta_revision = ruta / 'herramientas' / render
+  if version == '02_version_completa':
+    evidencia_revision = ruta / 'herramientas' / 'revision_completa_evidencias'
+    if (evidencia_revision / 'Proyecto_Unidad_2.pdf').exists():
+      carpeta_revision = evidencia_revision
+  pdf = carpeta_revision / 'Proyecto_Unidad_2.pdf'
   paginas = [p.extract_text() or '' for p in PdfReader(pdf).pages]
   inicio = next(i for i,p in enumerate(paginas) if 'El presente proyecto desarrolla' in p)
   normalizadas = [normalizar(p) for p in paginas]

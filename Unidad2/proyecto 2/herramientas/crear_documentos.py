@@ -5,6 +5,7 @@ from hashlib import sha256
 import json
 import math
 import re
+import sys
 import textwrap
 from xml.sax.saxutils import escape
 from zipfile import ZipFile
@@ -261,6 +262,30 @@ def crear(version):
         for run in p.runs: run.font.size=Pt(9)
         figura += 1
 
+  def evidencia(archivo, descripcion):
+    # Captura real proporcionada por el equipo; no se modifica su contenido.
+    nonlocal figura
+    ruta_evidencia = carpeta / 'evidencias' / 'ejecucion_equipo' / archivo
+    assert ruta_evidencia.exists(), 'No se encontró la evidencia: ' + str(ruta_evidencia)
+    imagen = Image.open(ruta_evidencia)
+    proporcion = imagen.width / imagen.height
+    ancho = min(6.2, max(3.6, 5.2 * proporcion))
+    p = doc.add_paragraph('Figura ' + str(figura)); formato(p, True); p.runs[0].bold = True
+    # La imagen es en línea: Word la mueve completa a la página siguiente si no cabe.
+    p.paragraph_format.keep_with_next = True
+    p.paragraph_format.space_before = Pt(84)
+    p = doc.add_paragraph(descripcion); formato(p, True); p.runs[0].italic = True
+    p.paragraph_format.keep_with_next = True
+    p = doc.add_paragraph(); p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p.paragraph_format.line_spacing = 1
+    p.add_run().add_picture(str(ruta_evidencia), width=Inches(ancho))
+    p = doc.add_paragraph('Nota. Captura de ejecución proporcionada por el equipo.'); formato(p, True)
+    p.paragraph_format.space_after = Pt(0)
+    for run in p.runs: run.font.size = Pt(9)
+    md.extend(['Figura ' + str(figura) + '. ' + descripcion, '',
+               '![' + descripcion + '](../evidencias/ejecucion_equipo/' + archivo + ')', ''])
+    figura += 1
+
   titulo('CALIDAD DE DATOS Y PYTHON EN EL ALMACÉN', True)
   parrafo('Una base de datos puede tener tablas, permisos y respaldos correctos y aun así recibir información equivocada. En el caso del almacén Pepsi, un precio inválido altera el valor del inventario, un lote mal relacionado puede enviar otra bebida y una fecha incorrecta impide priorizar el producto próximo a caducar. Por eso revisamos los datos antes de utilizarlos para decidir compras y entregas.')
   parrafo('Utilizamos datos ficticios para probar el proceso sin utilizar información real de clientes. Faker mantiene una semilla de 7 para repetir el ejercicio con la misma versión de la biblioteca; Pandas permite revisar, filtrar y transformar cada archivo (Faker, s. f.; pandas, s. f.-a, s. f.-b).')
@@ -356,6 +381,17 @@ def crear(version):
       [[f.archivo,f'{f.porcentaje_apto_antes:.0f} %',f'{f.porcentaje_no_apto_antes:.0f} %',f'{f.porcentaje_apto_despues:.0f} %',f'{f.porcentaje_no_apto_despues:.0f} %'] for f in datos.itertuples()], [1.1,1.1,1.2,1.2,1.2])
     parrafo('Conservados significa todas las filas que permanecen: corregidos más sin cambios. Se clasifica como corregido un registro conservado cuyo contenido cambió durante la limpieza. La primera copia de un duplicado permanece sin cambios y la repetición adicional se descarta. Descartados son todas las filas excluidas. Los 100 % aptos finales se calculan sobre los registros conservados, no sobre los 50 originales.')
     parrafo('La validación final no encontró nulos obligatorios, claves repetidas, valores inválidos ni referencias rotas en los archivos exportados. Esto comprueba las reglas definidas para el ejercicio; no demuestra que los datos ficticios correspondan al inventario real de Pepsi.')
+    titulo('EVIDENCIAS DE LA VALIDACIÓN DE LOS CSV')
+    parrafo('Las siguientes capturas muestran la inspección inicial, las reglas que detectaron errores y el resumen final de los tres archivos. En los tres casos la validación posterior a la limpieza reportó cero filas no aptas.')
+    evidencia('01_producto_estructura.png', 'Inspección inicial del archivo producto.')
+    evidencia('02_producto_reglas.png', 'Reglas de calidad detectadas en producto.')
+    evidencia('03_producto_resultado.png', 'Resultado de limpieza y validación final de producto.')
+    evidencia('04_lote_estructura.png', 'Inspección inicial del archivo lote.')
+    evidencia('05_lote_reglas.png', 'Reglas de calidad detectadas en lote.')
+    evidencia('06_lote_resultado.png', 'Resultado de limpieza y validación final de lote.')
+    evidencia('07_inventario_estructura.png', 'Inspección inicial del archivo inventario_lote.')
+    evidencia('08_inventario_reglas.png', 'Reglas de calidad detectadas en inventario_lote.')
+    evidencia('09_inventario_resultado.png', 'Resultado de limpieza y validación final de inventario_lote.')
   else:
     parrafo('Los tres archivos originales conservan 50 filas. El avance no calcula porcentajes integrales ni certifica que las revisiones parciales estén limpias. La comparación completa y el conteo de corregidos y descartados se encuentran resueltos en la segunda versión.')
 
@@ -363,8 +399,14 @@ def crear(version):
   parrafo('Se exportan archivos CSV con index=False para evitar que el índice interno de Pandas se convierta en una columna del almacén. Los acentos se conservan con UTF-8. Los archivos de origen permanecen separados de los resultados corregidos.')
   if completa:
     parrafo('La reintegración se prepara en el esquema proyecto_u2 de pepsi_distribucion. Esto mantiene las tablas originales de dbo y evita reemplazar sus datos. Primero se debe ejecutar el código de creación; después, el script Python solicita usuario y contraseña de SQL Server. La contraseña no se escribe en los archivos. El controlador utilizado es ODBC Driver 18 for SQL Server, disponible en Linux.')
-    parrafo('El orden es almacen, producto, lote e inventario_lote para respetar las relaciones. La carga se realiza en una transacción: si falla una inserción, no se confirma el conjunto. El programa también verifica que el destino esté vacío para evitar cargar los mismos registros dos veces (SQLAlchemy, s. f.). La ejecución autenticada en SQL Server y sus capturas quedan pendientes; los resultados anteriores corresponden a Python.')
+    parrafo('El orden es almacen, producto, lote e inventario_lote para respetar las relaciones. La carga se realiza en una transacción: si falla una inserción, no se confirma el conjunto. El programa también verifica que el destino esté vacío para evitar cargar los mismos registros dos veces (SQLAlchemy, s. f.). Las capturas recibidas del equipo confirman la carga de un almacén, 44 productos, 42 lotes y 42 inventarios. Fueron tomadas en Windows con autenticación integrada; el script de este proyecto conserva la adaptación para Linux mediante usuario y contraseña de SQL Server.')
     codigos([carpeta / 'scripts/00_preparar_sql.sql', carpeta / 'scripts/05_cargar_sql.py'])
+    titulo('EVIDENCIAS DE CARGA Y CONSULTAS EN SQL SERVER')
+    parrafo('La salida de carga confirma la transacción y los conteos de filas exportadas. Las consultas mostradas después verifican que los registros limpios quedaron disponibles en las tablas producto, lote e inventario_lote del esquema proyecto_u2.')
+    evidencia('10_carga_sql_server.png', 'Carga confirmada de los datos limpios en SQL Server.')
+    evidencia('11_consulta_producto.png', 'Consulta de registros cargados en producto.')
+    evidencia('12_consulta_lote.png', 'Consulta de registros cargados en lote.')
+    evidencia('13_consulta_inventario_lote.png', 'Consulta de registros cargados en inventario_lote.')
   else:
     parrafo('La exportación parcial ya está implementada. La conexión desde Python y la inserción con transacciones se dejan pendientes porque aún no están desarrolladas en las prácticas revisadas. No se deben cargar estos archivos parciales a la base de datos.')
 
@@ -375,7 +417,7 @@ def crear(version):
   parrafo('WITH ENCRYPTION oculta la definición de la vista en las consultas habituales del catálogo; no cifra los datos que devuelve ni sustituye los permisos. Debe conservarse el código fuente para mantenimiento y se deben revisar sus limitaciones de publicación y replicación (Microsoft, s. f.-a).')
   if completa:
     codigos([carpeta / 'scripts/06_consultas.sql'])
-    parrafo('El archivo contiene tres consultas con WHERE, ORDER BY y agregaciones, además de la tabla temporal y la vista. Sus resultados deberán capturarse después de ejecutar la carga en SQL Server.')
+    parrafo('El archivo contiene tres consultas con WHERE, ORDER BY y agregaciones, además de la tabla temporal y la vista. Las evidencias disponibles comprueban la carga y consultas directas de las tres tablas; aún se deben capturar los resultados de las tres consultas solicitadas, de la tabla temporal y de la vista encriptada.')
   else:
     parrafo('Estos temas tienen antecedentes en 1BD y se conservan como repaso. Se incluyen los scripts de estructura y consultas conocidos; sus resultados quedan pendientes de la carga de datos desde Python.')
     codigos([carpeta / 'scripts/00_preparar_sql.sql', carpeta / 'scripts/06_consultas.sql'])
@@ -399,8 +441,9 @@ def crear(version):
     'Revisar la afirmación del trigger de inventario: las capturas mostradas no incluyen su CREATE TRIGGER. No se debe dar por comprobada esa creación sin el código o su consulta de verificación.',
     'La captura de detalle_entrega valida cantidades no negativas, pero no incluye cantidad_danada <= cantidad_entregada. Agregar el CHECK en otra evidencia si se mantiene esa afirmación.',
     'Revisar antes de entregar la versión/edición de SQL Server, horarios y RPO/RTO del documento anterior. Las metas propuestas no prueban por sí solas que existan trabajos programados.',
-    'Las figuras nuevas son listados generados desde los archivos reales, no capturas de VS Code. Sustituirlas o complementarlas con capturas visibles del editor y sus ejecuciones.',
-    'Pendiente: ejecución autenticada de la carga, tres consultas, tabla temporal y vista en SQL Server. Solo entonces integrar capturas y describir los resultados como ejecutados.',
+    'Los listados de código se generan desde los archivos reales. Las evidencias de ejecución agregadas corresponden a capturas del equipo; conservar los comentarios con los apellidos en las futuras capturas del editor.',
+    'La evidencia de carga se obtuvo en Windows con Trusted Connection. El script entregado usa autenticación de SQL Server en Linux; no se debe afirmar que la captura comprueba por sí sola esa configuración local.',
+    'Pendiente: capturar los resultados de las tres consultas con filtros y agregaciones, de la tabla temporal y de la vista encriptada en SQL Server.',
   ]
   if not completa: notas.append('Esta versión es un avance de lo visto en clase y no cumple todavía todos los requisitos de entrega. Utilizar la versión completa para continuar.')
   for nota in notas:
@@ -440,5 +483,7 @@ def crear(version):
   print(salida)
 
 if __name__ == '__main__':
-  for version in ['01_version_actual','02_version_completa']:
+  versiones = sys.argv[1:] or ['01_version_actual','02_version_completa']
+  for version in versiones:
+    assert version in ['01_version_actual','02_version_completa']
     crear(version)

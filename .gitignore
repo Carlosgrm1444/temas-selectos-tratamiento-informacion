@@ -22,5 +22,8 @@ __pycache__/
 .agent/
 tmp/
 
+# Renderizaciones de control visual para documentos; no son entregables.
+Unidad2/proyecto 2/herramientas/revision_completa_evidencias/
+
 # Configuración local de Database Mail: puede contener una contraseña real.
 Unidad1/Actividad_3_Database_Mail/scripts/actividad_3.sql
