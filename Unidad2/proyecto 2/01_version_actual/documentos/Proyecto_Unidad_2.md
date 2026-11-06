@@ -36,44 +36,59 @@ Los controles se implementan en las secciones de validación de cada script y, e
 
 ## REGLAS DE NEGOCIO POR COLUMNA
 
-| Archivo | Columna | Regla | Obligatoriedad y relación |
-| --- | --- | --- | --- |
-| producto | id_producto | Entero positivo único | Obligatorio; clave primaria |
-| producto | clave_producto | 1 a 15 caracteres; mayúsculas, sin espacios externos | Obligatoria y única |
-| producto | nombre | 1 a 100 caracteres; formato título | Obligatorio; bebida comercializada |
-| producto | presentacion | 1 a 50 caracteres; minúsculas | Obligatoria |
-| producto | precio | 0.01 a 99,999,999.99; máximo dos decimales | Obligatorio; no inventar precios |
-| producto | activo | Entero: 0 o 1 | Obligatorio |
-| lote | id_lote | Entero positivo único | Obligatorio; clave primaria |
-| lote | id_producto | Entero positivo existente en producto limpio | Obligatorio; clave foránea |
-| lote | numero_lote | 1 a 30 caracteres; mayúsculas | Único junto con id_producto |
-| lote | fecha_recepcion | AAAA-MM-DD; entre 01/01/2026 y 02/11/2026 | Obligatoria; fecha de recepción del ejercicio |
-| lote | fecha_caducidad | AAAA-MM-DD; posterior a fecha_recepcion | Obligatoria; consistencia entre columnas |
-| inventario_lote | id_inventario | Entero positivo único | Obligatorio; clave primaria |
-| inventario_lote | id_almacen | Entero 1 | Almacén de referencia, sin cuarto CSV |
-| inventario_lote | id_lote | Entero existente en lote limpio | Único junto con id_almacen |
-| inventario_lote | id_producto | Debe coincidir con el producto del lote | Relación compuesta id_lote e id_producto |
-| inventario_lote | cantidad | Entero de 0 a 2,147,483,647 | Obligatoria; no corregir signos sin evidencia |
-| inventario_lote | fecha_actualizacion | AAAA-MM-DD HH:MM:SS; dentro de 2026 y hasta el corte | Obligatoria; corte 02/11/2026 23:59:59 |
+
+### Tabla producto
+
+| Columna | Regla | Obligatoriedad y relación |
+| --- | --- | --- |
+| id_producto | Entero positivo único | Obligatorio; clave primaria |
+| clave_producto | 1 a 15 caracteres; mayúsculas, sin espacios externos | Obligatoria y única |
+| nombre | 1 a 100 caracteres; formato título | Obligatorio; bebida comercializada |
+| presentacion | 1 a 50 caracteres; minúsculas | Obligatoria |
+| precio | 0.01 a 99,999,999.99; máximo dos decimales | Obligatorio; no inventar precios |
+| activo | Entero: 0 o 1 | Obligatorio |
+
+
+### Tabla lote
+
+| Columna | Regla | Obligatoriedad y relación |
+| --- | --- | --- |
+| id_lote | Entero positivo único | Obligatorio; clave primaria |
+| id_producto | Entero positivo existente en producto limpio | Obligatorio; clave foránea |
+| numero_lote | 1 a 30 caracteres; mayúsculas | Único junto con id_producto |
+| fecha_recepcion | AAAA-MM-DD; entre 01/01/2026 y 02/11/2026 | Obligatoria; fecha de recepción del ejercicio |
+| fecha_caducidad | AAAA-MM-DD; posterior a fecha_recepcion | Obligatoria; consistencia entre columnas |
+
+
+### Tabla inventario_lote
+
+| Columna | Regla | Obligatoriedad y relación |
+| --- | --- | --- |
+| id_inventario | Entero positivo único | Obligatorio; clave primaria |
+| id_almacen | Entero 1 | Almacén de referencia, sin cuarto CSV |
+| id_lote | Entero existente en lote limpio | Único junto con id_almacen |
+| id_producto | Debe coincidir con el producto del lote | Relación compuesta id_lote e id_producto |
+| cantidad | Entero de 0 a 2,147,483,647 | Obligatoria; no corregir signos sin evidencia |
+| fecha_actualizacion | AAAA-MM-DD HH:MM:SS; dentro de 2026 y hasta el corte | Obligatoria; corte 02/11/2026 23:59:59 |
 
 Las claves enteras se limitan al rango de SQL Server INT. No se admiten nulos, texto vacío, espacios externos ni identificadores repetidos. La fecha de corte es el 2 de noviembre de 2026. La presentación se normaliza a minúsculas y las claves de producto y lote a mayúsculas.
 
 
 ## DIAGNÓSTICO DE LA CALIDAD DE LOS DATOS
 
-1. ¿Qué porcentaje de registros cumple todas las reglas y permite utilizar la información del almacén?
+1. ¿Qué porcentaje de registros cumple todas las reglas y permite utilizar la información del almacén? Respuesta: Sí. Después de la limpieza, los registros conservados cumplen las reglas definidas para el ejercicio.
 
-2. ¿Qué datos obligatorios faltan y cómo impedirían identificar el producto o sus existencias?
+2. ¿Qué datos obligatorios faltan y cómo impedirían identificar el producto o sus existencias? Respuesta: No. En los archivos limpios no faltan datos obligatorios.
 
-3. ¿Existen registros o claves repetidas que puedan inflar el inventario y provocar pedidos innecesarios?
+3. ¿Existen registros o claves repetidas que puedan inflar el inventario y provocar pedidos innecesarios? Respuesta: No. Los duplicados se identificaron y no permanecen en los archivos limpios.
 
-4. ¿Los precios son numéricos, positivos y válidos para calcular el valor de las existencias?
+4. ¿Los precios son numéricos, positivos y válidos para calcular el valor de las existencias? Respuesta: Sí. Los precios aceptados son numéricos y mayores que cero.
 
-5. ¿Todos los lotes e inventarios se relacionan con productos existentes y conservan la relación entre lote y producto?
+5. ¿Todos los lotes e inventarios se relacionan con productos existentes y conservan la relación entre lote y producto? Respuesta: Sí. Se validaron las relaciones entre producto, lote e inventario_lote.
 
-6. ¿Las fechas de recepción y caducidad son válidas y permiten decidir qué lotes deben salir primero?
+6. ¿Las fechas de recepción y caducidad son válidas y permiten decidir qué lotes deben salir primero? Respuesta: Sí. Las fechas válidas conservan el orden entre recepción y caducidad.
 
-7. ¿Las cantidades son enteras y no negativas, y corresponden al mismo producto y lote para sustentar el reabastecimiento?
+7. ¿Las cantidades son enteras y no negativas, y corresponden al mismo producto y lote para sustentar el reabastecimiento? Respuesta: Sí. Las cantidades aceptadas son enteras no negativas y respetan la relación del lote con el producto.
 
 
 ## GENERACIÓN DE LOS TRES ARCHIVOS CSV

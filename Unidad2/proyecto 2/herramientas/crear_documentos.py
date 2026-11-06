@@ -47,13 +47,13 @@ reglas = [
 ]
 
 preguntas = [
- '¿Qué porcentaje de registros cumple todas las reglas y permite utilizar la información del almacén?',
- '¿Qué datos obligatorios faltan y cómo impedirían identificar el producto o sus existencias?',
- '¿Existen registros o claves repetidas que puedan inflar el inventario y provocar pedidos innecesarios?',
- '¿Los precios son numéricos, positivos y válidos para calcular el valor de las existencias?',
- '¿Todos los lotes e inventarios se relacionan con productos existentes y conservan la relación entre lote y producto?',
- '¿Las fechas de recepción y caducidad son válidas y permiten decidir qué lotes deben salir primero?',
- '¿Las cantidades son enteras y no negativas, y corresponden al mismo producto y lote para sustentar el reabastecimiento?',
+ ('¿Qué porcentaje de registros cumple todas las reglas y permite utilizar la información del almacén?', 'Sí. Después de la limpieza, los registros conservados cumplen las reglas definidas para el ejercicio.'),
+ ('¿Qué datos obligatorios faltan y cómo impedirían identificar el producto o sus existencias?', 'No. En los archivos limpios no faltan datos obligatorios.'),
+ ('¿Existen registros o claves repetidas que puedan inflar el inventario y provocar pedidos innecesarios?', 'No. Los duplicados se identificaron y no permanecen en los archivos limpios.'),
+ ('¿Los precios son numéricos, positivos y válidos para calcular el valor de las existencias?', 'Sí. Los precios aceptados son numéricos y mayores que cero.'),
+ ('¿Todos los lotes e inventarios se relacionan con productos existentes y conservan la relación entre lote y producto?', 'Sí. Se validaron las relaciones entre producto, lote e inventario_lote.'),
+ ('¿Las fechas de recepción y caducidad son válidas y permiten decidir qué lotes deben salir primero?', 'Sí. Las fechas válidas conservan el orden entre recepción y caducidad.'),
+ ('¿Las cantidades son enteras y no negativas, y corresponden al mismo producto y lote para sustentar el reabastecimiento?', 'Sí. Las cantidades aceptadas son enteras no negativas y respetan la relación del lote con el producto.'),
 ]
 
 referencias = [
@@ -141,6 +141,7 @@ def crear(version):
   completa = version == '02_version_completa'
   carpeta = ruta / version
   doc = Document(base)
+  doc.settings.odd_and_even_pages_header_footer = False
   if 'Title' not in doc.styles:
     estilo = doc.styles.add_style('Title', WD_STYLE_TYPE.PARAGRAPH)
     estilo.font.name = 'Times New Roman'
@@ -238,6 +239,10 @@ def crear(version):
     p = doc.add_heading(texto, level=1); formato(p, True)
     p.paragraph_format.keep_with_next = True
     titulos_indice.append(texto); md.extend(['', '## ' + texto, ''])
+  def subtitulo(texto):
+    p = doc.add_heading(texto, level=2); formato(p, True)
+    p.paragraph_format.keep_with_next = True
+    md.extend(['', '### ' + texto, ''])
   def parrafo(texto):
     p = doc.add_paragraph(texto); formato(p)
     md.extend([texto, '']); return p
@@ -265,6 +270,7 @@ def crear(version):
   def evidencia(archivo, descripcion):
     # Captura real proporcionada por el equipo; no se modifica su contenido.
     nonlocal figura
+    doc.add_page_break()
     ruta_evidencia = carpeta / 'evidencias' / 'ejecucion_equipo' / archivo
     assert ruta_evidencia.exists(), 'No se encontró la evidencia: ' + str(ruta_evidencia)
     imagen = Image.open(ruta_evidencia)
@@ -273,7 +279,7 @@ def crear(version):
     p = doc.add_paragraph('Figura ' + str(figura)); formato(p, True); p.runs[0].bold = True
     # La imagen es en línea: Word la mueve completa a la página siguiente si no cabe.
     p.paragraph_format.keep_with_next = True
-    p.paragraph_format.space_before = Pt(84)
+    p.paragraph_format.space_before = Pt(0)
     p = doc.add_paragraph(descripcion); formato(p, True); p.runs[0].italic = True
     p.paragraph_format.keep_with_next = True
     p = doc.add_paragraph(); p.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -311,11 +317,14 @@ def crear(version):
   parrafo('Los controles se implementan en las secciones de validación de cada script y, en la versión completa, también mediante las restricciones del código T-SQL. No se convierten precios o cantidades negativos en positivos sin comprobar su valor real; se separan para revisión.')
 
   titulo('REGLAS DE NEGOCIO POR COLUMNA')
-  tabla(['Archivo', 'Columna', 'Regla', 'Obligatoriedad y relación'], reglas, [0.9, 1.25, 1.85, 1.9])
+  for archivo, nombre in [('producto', 'Tabla producto'), ('lote', 'Tabla lote'), ('inventario_lote', 'Tabla inventario_lote')]:
+    subtitulo(nombre)
+    tabla(['Columna', 'Regla', 'Obligatoriedad y relación'], [fila[1:] for fila in reglas if fila[0] == archivo], [1.4, 2.2, 2.3])
   parrafo('Las claves enteras se limitan al rango de SQL Server INT. No se admiten nulos, texto vacío, espacios externos ni identificadores repetidos. La fecha de corte es el 2 de noviembre de 2026. La presentación se normaliza a minúsculas y las claves de producto y lote a mayúsculas.')
 
   titulo('DIAGNÓSTICO DE LA CALIDAD DE LOS DATOS')
-  for i, pregunta in enumerate(preguntas, 1): parrafo(str(i) + '. ' + pregunta)
+  for i, (pregunta, respuesta) in enumerate(preguntas, 1):
+    parrafo(str(i) + '. ' + pregunta + ' Respuesta: ' + respuesta)
 
   titulo('GENERACIÓN DE LOS TRES ARCHIVOS CSV')
   parrafo('Cada archivo contiene 50 filas. Primero se generaron registros relacionados y después se incorporaron fallas intencionales. La última fila se reemplazó por una copia exacta de una fila existente para conservar 50 registros en lugar de aumentar el total a 51.')
@@ -417,7 +426,14 @@ def crear(version):
   parrafo('WITH ENCRYPTION oculta la definición de la vista en las consultas habituales del catálogo; no cifra los datos que devuelve ni sustituye los permisos. Debe conservarse el código fuente para mantenimiento y se deben revisar sus limitaciones de publicación y replicación (Microsoft, s. f.-a).')
   if completa:
     codigos([carpeta / 'scripts/06_consultas.sql'])
-    parrafo('El archivo contiene tres consultas con WHERE, ORDER BY y agregaciones, además de la tabla temporal y la vista. Las evidencias disponibles comprueban la carga y consultas directas de las tres tablas; aún se deben capturar los resultados de las tres consultas solicitadas, de la tabla temporal y de la vista encriptada.')
+    parrafo('El archivo contiene tres consultas con WHERE, ORDER BY y agregaciones, además de la tabla temporal y la vista. Las evidencias siguientes muestran la ejecución de las consultas, de la tabla temporal y de la vista encriptada.')
+    evidencia('Imagen1.png', 'Resultado de la consulta de lotes próximos a caducar.')
+    evidencia('Imagen2.png', 'Resultado de la consulta de comparación de precios por producto.')
+    evidencia('Imagen3.png', 'Ejecución de la creación y carga de la tabla temporal de revisión.')
+    evidencia('Imagen4.png', 'Resultado de la tabla temporal ordenada por valor de inventario.')
+    evidencia('Imagen5.png', 'Creación correcta de la vista encriptada de existencias.')
+    evidencia('Imagen6.png', 'Resultado de la consulta realizada a la vista encriptada.')
+    evidencia('Imagen7.png', 'Comprobación de que la vista se encuentra encriptada.')
   else:
     parrafo('Estos temas tienen antecedentes en 1BD y se conservan como repaso. Se incluyen los scripts de estructura y consultas conocidos; sus resultados quedan pendientes de la carga de datos desde Python.')
     codigos([carpeta / 'scripts/00_preparar_sql.sql', carpeta / 'scripts/06_consultas.sql'])
