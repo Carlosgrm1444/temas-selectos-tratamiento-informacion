@@ -11,7 +11,7 @@ from docx.shared import Inches, Pt
 ruta_proyecto = Path(__file__).resolve().parents[1]
 ruta_origen = Path("/home/carlos-rodriguez/Descargas/Proyecto_Unidad_I_y_II.docx")
 ruta_salida = ruta_proyecto / "03_version_final_ssms/documentos/Proyecto_Unidad_I_y_II.docx"
-ruta_imagenes = ruta_proyecto / "03_version_final_ssms/evidencias/importacion_ssms"
+ruta_imagenes = ruta_proyecto / "03_version_final_ssms/evidencias/importacion_ssms_actualizada"
 ruta_codigo_original = ruta_proyecto / "02_version_completa/evidencias/05_cargar_sql_03.png"
 ruta_codigo_final = ruta_proyecto / "03_version_final_ssms/evidencias/codigo_sql/05_cargar_sql_03.png"
 
@@ -60,11 +60,11 @@ ruta_codigo_final.parent.mkdir(parents=True, exist_ok=True)
 copy2(ruta_codigo_original, ruta_codigo_final)
 documento = Document(ruta_salida)
 
-# ? Actualizar las imágenes posteriores porque se insertarán doce evidencias nuevas.
+# ? Actualizar las imágenes posteriores porque se insertarán dieciséis evidencias nuevas.
 for parrafo in documento.paragraphs:
     coincidencia = re.match(r"(IMAGEN )([0-9]+)(\. .*)", parrafo.text)
     if coincidencia and int(coincidencia.group(2)) >= 94:
-        numero_nuevo = int(coincidencia.group(2)) + 12
+        numero_nuevo = int(coincidencia.group(2)) + 16
         texto_nuevo = f"{coincidencia.group(1)}{numero_nuevo}{coincidencia.group(3)}"
         for run in parrafo.runs:
             run.text = ""
@@ -87,7 +87,7 @@ ancla = agregar_parrafo(
 ancla = agregar_parrafo(
     documento,
     ancla,
-    "Además de la carga realizada con T-SQL y Python, se utilizó el asistente Importar archivo plano de SQL Server Management Studio. Se importaron los archivos limpios de inventario_lote, lote y producto. El asistente permite seleccionar el archivo CSV, revisar los registros, verificar los tipos de datos y confirmar la creación de cada tabla.",
+    "Además de la carga realizada con T-SQL y Python, se utilizó el asistente de importación y exportación de SQL Server Management Studio. Se importaron los archivos CSV de inventario_lote, lote y producto. En cada caso se seleccionó el archivo, se revisó la vista previa, se configuró la conexión al servidor y se comprobó que los registros se encontraran en las tablas.",
 )
 
 # ? Reintegrar la tercera parte del código de carga que corresponde a la imagen 93.
@@ -102,18 +102,22 @@ imagen_93.add_run().add_picture(str(ruta_codigo_final), width=Inches(5.9))
 caption_93._p.addprevious(imagen_93._p)
 
 evidencias = [
-    ("Imagen1.png", "IMAGEN 94. ACCESO AL ASISTENTE IMPORTAR ARCHIVO PLANO EN SQL SERVER MANAGEMENT STUDIO."),
-    ("Imagen2.png", "IMAGEN 95. SELECCIÓN DEL ARCHIVO CSV Y DE LA TABLA INVENTARIO_LOTE."),
-    ("Imagen3.png", "IMAGEN 96. VISTA PREVIA DE LOS REGISTROS DEL ARCHIVO INVENTARIO_LOTE."),
-    ("Imagen4.png", "IMAGEN 97. REVISIÓN DE LAS COLUMNAS Y TIPOS DE DATOS DE INVENTARIO_LOTE."),
-    ("Imagen5.png", "IMAGEN 98. RESULTADO CORRECTO DE LA IMPORTACIÓN DE INVENTARIO_LOTE."),
-    ("Imagen6.png", "IMAGEN 99. SELECCIÓN DEL ARCHIVO CSV Y DE LA TABLA LOTE."),
-    ("Imagen7.png", "IMAGEN 100. VISTA PREVIA DE LOS REGISTROS DEL ARCHIVO LOTE."),
+    ("imagen1.png", "IMAGEN 94. SELECCIÓN DEL ARCHIVO CSV PARA LA TABLA INVENTARIO_LOTE."),
+    ("Imagen2.png", "IMAGEN 95. VISTA PREVIA DE LOS REGISTROS DEL ARCHIVO INVENTARIO_LOTE."),
+    ("imagen3.png", "IMAGEN 96. CONFIGURACIÓN DE LA CONEXIÓN DE DESTINO PARA INVENTARIO_LOTE."),
+    ("Imagen4.png", "IMAGEN 97. RESULTADO CORRECTO DE LA IMPORTACIÓN DE INVENTARIO_LOTE."),
+    ("Imagen5.png", "IMAGEN 98. SELECCIÓN DEL ARCHIVO CSV PARA LA TABLA LOTE."),
+    ("Imagen6.png", "IMAGEN 99. VISTA PREVIA DE LOS REGISTROS DEL ARCHIVO LOTE."),
+    ("Imagen7.png", "IMAGEN 100. CONFIGURACIÓN DE LA CONEXIÓN DE DESTINO PARA LOTE."),
     ("Imagen8.png", "IMAGEN 101. RESULTADO CORRECTO DE LA IMPORTACIÓN DE LOTE."),
-    ("Imagen9.png", "IMAGEN 102. SELECCIÓN DEL ARCHIVO CSV Y DE LA TABLA PRODUCTO."),
+    ("Imagen9.png", "IMAGEN 102. SELECCIÓN DEL ARCHIVO CSV PARA LA TABLA PRODUCTO."),
     ("Imagen10.png", "IMAGEN 103. VISTA PREVIA DE LOS REGISTROS DEL ARCHIVO PRODUCTO."),
-    ("Imagen11.png", "IMAGEN 104. REVISIÓN DE LAS COLUMNAS Y TIPOS DE DATOS DE PRODUCTO."),
-    ("Imagen12.png", "IMAGEN 105. RESULTADO CORRECTO DE LA IMPORTACIÓN DE PRODUCTO."),
+    ("Imagen11.png", "IMAGEN 104. CONFIGURACIÓN DE LA CONEXIÓN DE DESTINO PARA PRODUCTO."),
+    ("Imagen12.png", "IMAGEN 105. SELECCIÓN DE LA BASE DE DATOS DE DESTINO PARA PRODUCTO."),
+    ("Imagen13.png", "IMAGEN 106. RESULTADO CORRECTO DE LA IMPORTACIÓN DE PRODUCTO."),
+    ("Imagen14.png", "IMAGEN 107. CONSULTA DE COMPROBACIÓN DE LOS REGISTROS DE INVENTARIO_LOTE."),
+    ("Imagen15.png", "IMAGEN 108. CONSULTA DE COMPROBACIÓN DE LOS REGISTROS DE LOTE."),
+    ("Imagen16.png", "IMAGEN 109. CONSULTA DE COMPROBACIÓN DE LOS REGISTROS DE PRODUCTO."),
 ]
 
 for nombre, descripcion in evidencias:
@@ -122,7 +126,7 @@ for nombre, descripcion in evidencias:
 
 # ? Mantener todas las leyendas de la importación debajo de su evidencia.
 # ? La imagen 93 no tiene una captura asociada en el documento recibido, por eso no se mueve.
-for numero in list(range(88, 93)) + list(range(106, 121)):
+for numero in list(range(88, 93)) + list(range(110, 125)):
     descripcion = f"IMAGEN {numero}."
     for posicion, parrafo in enumerate(documento.paragraphs[:-1]):
         if parrafo.text.startswith(descripcion):
