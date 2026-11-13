@@ -1,0 +1,76 @@
+Ortega García - Núñez López - Rodríguez Macias
+<class 'pandas.DataFrame'>
+RangeIndex: 50 entries, 0 to 49
+Data columns (total 5 columns):
+ #   Column           Non-Null Count  Dtype 
+---  ------           --------------  ----- 
+ 0   id_lote          50 non-null     string
+ 1   id_producto      50 non-null     string
+ 2   numero_lote      49 non-null     string
+ 3   fecha_recepcion  50 non-null     string
+ 4   fecha_caducidad  50 non-null     string
+dtypes: string(5)
+memory usage: 2.1 KB
+Dimensiones: (50, 5)
+       id_lote id_producto numero_lote fecha_recepcion fecha_caducidad
+count       50          50          49              50              50
+unique      49          49          48              47              46
+top         21          21      LOT021      2026-04-04      2027-04-04
+freq         2           2           2               3               3
+Errores por regla:
+id_lote_nulo                 0
+id_lote_espacios             0
+id_producto_nulo             0
+id_producto_espacios         0
+numero_lote_nulo             1
+numero_lote_espacios         1
+fecha_recepcion_nulo         0
+fecha_recepcion_espacios     0
+fecha_caducidad_nulo         0
+fecha_caducidad_espacios     0
+duplicado_exacto             2
+clave_primaria_repetida      2
+id_lote_tipo                 0
+id_producto_tipo             1
+numero_lote_formato          2
+numero_lote_longitud         0
+clave_negocio_1_repetida     2
+fecha_recepcion_invalida     2
+fecha_recepcion_formato      2
+fecha_caducidad_invalida     0
+fecha_caducidad_formato      0
+id_lote_invalido             0
+id_producto_invalido         0
+producto_inexistente         5
+recepcion_fuera_periodo      3
+caducidad_antes_recepcion    1
+dtype: Int64
+Filas afectadas:
+id_lote    id_producto numero_lote fecha_recepcion fecha_caducidad
+      1              1        <NA>      2026-07-05      2027-07-05
+      2              2    LOT002        2026-01-29      2027-01-29
+      3              3      lot003      2026-06-05      2027-06-05
+      4              4      LOT004      15/03/2026      2027-02-21
+      5 producto cinco      LOT005      2026-01-27      2027-01-27
+      6            999      LOT006      2026-07-13      2027-07-13
+      7              7      LOT007      2026-06-03      2025-01-01
+      8              8      LOT008      2026-02-30      2027-06-18
+      9              9      LOT009      2025-12-01      2027-05-16
+     21             21      LOT021      2026-04-04      2027-04-04
+     21             21      LOT021      2026-04-04      2027-04-04
+Resumen de calidad:
+archivo: lote
+iniciales: 50
+aptos_antes: 39
+no_aptos_antes: 11
+porcentaje_apto_antes: 78.0
+porcentaje_no_apto_antes: 22.0
+conservados: 42
+corregidos: 2
+sin_cambios: 40
+descartados: 8
+aptos_despues: 42
+no_aptos_despues: 0
+porcentaje_apto_despues: 100.0
+porcentaje_no_apto_despues: 0.0
+Validación final: 0 filas no aptas.
