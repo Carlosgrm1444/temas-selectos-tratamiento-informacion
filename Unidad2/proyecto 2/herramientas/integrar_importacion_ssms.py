@@ -12,6 +12,8 @@ ruta_proyecto = Path(__file__).resolve().parents[1]
 ruta_origen = Path("/home/carlos-rodriguez/Descargas/Proyecto_Unidad_I_y_II.docx")
 ruta_salida = ruta_proyecto / "03_version_final_ssms/documentos/Proyecto_Unidad_I_y_II.docx"
 ruta_imagenes = ruta_proyecto / "03_version_final_ssms/evidencias/importacion_ssms"
+ruta_codigo_original = ruta_proyecto / "02_version_completa/evidencias/05_cargar_sql_03.png"
+ruta_codigo_final = ruta_proyecto / "03_version_final_ssms/evidencias/codigo_sql/05_cargar_sql_03.png"
 
 
 def mover_despues(parrafo_base, parrafo_nuevo):
@@ -54,6 +56,8 @@ def agregar_imagen(documento, parrafo_base, imagen, descripcion):
 
 
 copy2(ruta_origen, ruta_salida)
+ruta_codigo_final.parent.mkdir(parents=True, exist_ok=True)
+copy2(ruta_codigo_original, ruta_codigo_final)
 documento = Document(ruta_salida)
 
 # ? Actualizar las imágenes posteriores porque se insertarán doce evidencias nuevas.
@@ -86,6 +90,17 @@ ancla = agregar_parrafo(
     "Además de la carga realizada con T-SQL y Python, se utilizó el asistente Importar archivo plano de SQL Server Management Studio. Se importaron los archivos limpios de inventario_lote, lote y producto. El asistente permite seleccionar el archivo CSV, revisar los registros, verificar los tipos de datos y confirmar la creación de cada tabla.",
 )
 
+# ? Reintegrar la tercera parte del código de carga que corresponde a la imagen 93.
+caption_93 = next(
+    parrafo
+    for parrafo in documento.paragraphs
+    if parrafo.text.strip() == "IMAGEN 93. LISTADO DE 05_CARGAR_SQL.PY, PARTE 3"
+)
+imagen_93 = documento.add_paragraph()
+imagen_93.alignment = WD_ALIGN_PARAGRAPH.CENTER
+imagen_93.add_run().add_picture(str(ruta_codigo_final), width=Inches(5.9))
+caption_93._p.addprevious(imagen_93._p)
+
 evidencias = [
     ("Imagen1.png", "IMAGEN 94. ACCESO AL ASISTENTE IMPORTAR ARCHIVO PLANO EN SQL SERVER MANAGEMENT STUDIO."),
     ("Imagen2.png", "IMAGEN 95. SELECCIÓN DEL ARCHIVO CSV Y DE LA TABLA INVENTARIO_LOTE."),
@@ -103,6 +118,18 @@ evidencias = [
 
 for nombre, descripcion in evidencias:
     ancla = agregar_imagen(documento, ancla, ruta_imagenes / nombre, descripcion)
+
+
+# ? Mantener todas las leyendas de la importación debajo de su evidencia.
+# ? La imagen 93 no tiene una captura asociada en el documento recibido, por eso no se mueve.
+for numero in list(range(88, 93)) + list(range(106, 121)):
+    descripcion = f"IMAGEN {numero}."
+    for posicion, parrafo in enumerate(documento.paragraphs[:-1]):
+        if parrafo.text.startswith(descripcion):
+            posible_imagen = documento.paragraphs[posicion + 1]
+            if posible_imagen._p.xpath(".//w:drawing"):
+                posible_imagen._p.addnext(parrafo._p)
+            break
 
 # ? Solicitar a Word que actualice el índice al abrir el archivo.
 settings = documento.settings.element
