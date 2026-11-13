@@ -1,27 +1,51 @@
 -- ? Carlos Gabriel Rodriguez Macias
--- ! Importar la base fronteresa_repaso desde el archivo bacpac.
--- * El archivo bacpac se importa con importar_fronteresa_repaso.sh en Linux.
+-- ! Athala Dulce Edith Gómez Arellano
+-- * 13 de noviembre de 2026
 
--- ? Usar la base que se importó.
+-- ? Crear sp
 Use fronteresa_repaso;
+Go
+Create or Alter Procedure sp_insertar_cliente
+  @razon_social nvarchar(100),
+  @correo varchar(100)
+
+  With Encryption
+  As Begin
+
+    Insert Into clientes_athala (razon_social, correo)
+    Values (@razon_social, @correo);
+
+  If @@Rowcount = 0
+    Print 'No se logro insertar el registro.'
+  Else
+    Print 'Se logro insertar el registro.'
+End
+
+Go
+Execute sp_insertar_cliente 'Ejemplo_carlos', 'ejemplo@carlos.com';
+
+GO
+Create or Alter Procedure sp_actualizar_cliente
+  @id_cliente int,
+  @razon_social varchar(100) = Null,
+  @correo varchar(100) = Null
+
+As Begin
+  If @id_cliente <= 0 Or @id_cliente Is Null
+  Begin
+    Print 'Los parametros no son validos.'
+    Return;
+  End
+
+  Update clientes_athala
+  Set razon_social = IsNull(@razon_social, razon_social),
+      correo = IsNull(@correo, correo)
+  Where id_cliente = @id_cliente;
+
+  If @@Rowcount = 0
+    Print 'No se logro actualizar el registro.'
+  Else
+    Print 'Se logro actualizar el registro.'
+End
 GO
 
--- ? Ver las tablas que se importaron.
-Select
-  name As tabla
-From sys.tables;
-GO
-
--- ? Ver la cantidad de registros de cada tabla.
-Select 'clientes_athala' As tabla, Count(*) As registros
-From dbo.clientes_athala
-Union All
-Select 'productos_athala', Count(*)
-From dbo.productos_athala
-Union All
-Select 'envios_athala', Count(*)
-From dbo.envios_athala
-Union All
-Select 'detalle_envio_athala', Count(*)
-From dbo.detalle_envio_athala;
-GO
