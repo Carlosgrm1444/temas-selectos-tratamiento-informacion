@@ -1,0 +1,45 @@
+﻿id_producto,clave_producto,nombre,presentacion,precio,activo
+2,BEB002,Pepsi,355 ml,59.43,1
+3,BEB003,7 Up,600 ml,139.37,1
+8,BEB008,7 Up,600 ml,185.59,1
+9,BEB009,Gatorade,600 ml,40.84,1
+10,BEB010,Mountain Dew,600 ml,129.82,1
+11,BEB011,Pepsi,1 litro,200.96,1
+12,BEB012,Mirinda,1 litro,29.0,1
+13,BEB013,7 Up,1 litro,176.27,1
+14,BEB014,Gatorade,1 litro,80.35,1
+15,BEB015,Mountain Dew,1 litro,22.28,1
+16,BEB016,Pepsi,1.5 litros,38.16,1
+17,BEB017,Mirinda,1.5 litros,152.09,1
+18,BEB018,7 Up,1.5 litros,147.02,1
+19,BEB019,Gatorade,1.5 litros,32.89,1
+20,BEB020,Mountain Dew,1.5 litros,88.86,1
+21,BEB021,Pepsi,2 litros,39.72,1
+22,BEB022,Mirinda,2 litros,190.56,1
+23,BEB023,7 Up,2 litros,149.1,1
+24,BEB024,Gatorade,2 litros,29.36,1
+25,BEB025,Mountain Dew,2 litros,280.94,1
+26,BEB026,Pepsi,3 litros,195.28,1
+27,BEB027,Mirinda,3 litros,50.56,1
+28,BEB028,7 Up,3 litros,83.15,1
+29,BEB029,Gatorade,3 litros,216.64,1
+30,BEB030,Mountain Dew,3 litros,215.59,1
+31,BEB031,Pepsi,6 latas,201.03,1
+32,BEB032,Mirinda,6 latas,30.27,1
+33,BEB033,7 Up,6 latas,199.1,1
+34,BEB034,Gatorade,6 latas,201.87,1
+35,BEB035,Mountain Dew,6 latas,139.98,1
+36,BEB036,Pepsi,12 latas,26.24,1
+37,BEB037,Mirinda,12 latas,82.44,1
+38,BEB038,7 Up,12 latas,25.26,1
+39,BEB039,Gatorade,12 latas,192.4,1
+40,BEB040,Mountain Dew,12 latas,291.3,1
+41,BEB041,Pepsi,24 latas,53.63,1
+42,BEB042,Mirinda,24 latas,104.89,1
+43,BEB043,7 Up,24 latas,147.34,1
+44,BEB044,Gatorade,24 latas,57.26,1
+45,BEB045,Mountain Dew,24 latas,187.17,1
+46,BEB046,Pepsi,12 botellas,48.59,1
+47,BEB047,Mirinda,12 botellas,197.07,1
+48,BEB048,7 Up,12 botellas,111.08,1
+49,BEB049,Gatorade,12 botellas,193.58,1
