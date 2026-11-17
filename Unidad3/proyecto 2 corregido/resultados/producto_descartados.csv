@@ -1,0 +1,7 @@
+fila_csv,id_producto,clave_producto,nombre,presentacion,precio,activo
+2,1,BEB001,,355 ml,116.11,1
+5,4,BEB004,Gatorade,355 ml,sin precio,1
+6,5,BEB005,Mountain Dew,355 ml,-25,1
+7,6,BEB006,Pepsi,600 ml,33.73,3
+8,7,BEB007,Mirinda,600 ml,,1
+51,21,BEB021,Pepsi,2 litros,39.72,1

@@ -26,12 +26,13 @@
 # ? importa pandas, faker, configura faker para español México,
 # ? establece un seed(7)
 
+from datetime import date
+
 import pandas as pd
 import pyodbc as oc
 from faker import Faker
 from sqlalchemy import URL, create_engine
 from sqlalchemy.exc import SQLAlchemyError
-from datetime import date
 
 # print(oc.drivers())
 fake = Faker("es_Mx")
@@ -93,46 +94,8 @@ ventas.loc[2, "cantidad"] = -5
 ventas.loc[2, "id_producto"] = 8
 
 # Duplica la fila 10 (fuera del ciclo), no olvides emplear .concat() y el .copy() y que ignore los indices
-# Guarda el archivo sin el índice de pandas, con la codificación de utf8 con el nombre Ventas_Originales_tu_primer_apellido.csv, ejemplo: Ventas_Originales_gomez.csv
-# Establecer las reglas de negocio en formato de tabla en el documento (word)
-# Formular 4 preguntas para el diagnóstico
-# Lee el archivo, implementa el control de errores, si el archivo no existe implementa un mensaje de error y si existe mostar la información del archivo, las filas y columnas y emplea la función describe y explica para que sirve
-# Valida:
-# Si hay nulos y cuantos son
-# Si hay duplicados
-# Si hay claves primarias repetidas  (.duplicated(keep=False))
-# Cantidades fuera del rango permitido (emplea ~)
-# Fechas inválidas o fuera del periodo (crea una variable fechas y emplea to_datetime() con errors "coerce"
-# Productos inexistentes  (emplea isin(productos["id_producto"])
-# Actualizar a cantidades positivas (emplea .abs()) y por ende corrige ["subtotal"]
-# Quitar la fila duplicada (.drop_duplicates(keep="first").copy())
-# Quitar la fila con un producto inexistente (.isin(productos["id_producto"]).copy())
-# Imprime la cantidad de registros en el nuevo DataFrame limpio
-# Investiga para que sirve la biblioteca pyodbc y ejecuta: pip install pyodbc
-# Importa pyodbc  e imprime print(pyodbc.drivers())
-# Investiga para que sirve la biblioteca sqlalchemy
-# Investiga para que sirve la clase SQLAlchemyError
-# Importar sqlalchemy  (no olvides ejecutar: pip install sqlalchemy)
-# Investiga para que sirve raw string (cadena sin procesar) 
-# Crea una variable servidor  (ejemplo del valor : r"localhost\SQL" y una variable base_datos, con sus respectivos valores
-# Crea una variable de cadena_conexion :
-# cadena_conexion = (
-#     "DRIVER={ODBC Driver 17 for SQL Server};"
-#     f"SERVER={servidor};"
-#     f"DATABASE={base_datos};"
-#     "Trusted_Connection=yes;"
-# )
-# Crea la variable url:
-# url = URL.create(
-#     "mssql+pyodbc",
-#     query={"odbc_connect": cadena_conexion}
-# )
-# Crea la variable motor:
-# motor = create_engine(url)
-# Conectarse con SQL SERVER:
-# try:
-#     with motor.connect() as conexion:
-#         print("Conexión exitosa con SQL Server.")
+ventas = pd.concat([ventas,ventas.iloc[[10]]].copy(), ignore_index=True)
 
-# except SQLAlchemyError as error:
-#     print("No fue posible conectarse:", error)
+# Guarda el archivo sin el índice de pandas, con la codificación de utf8 con el nombre Ventas_Originales_tu_primer_apellido.csv, ejemplo: Ventas_Originales_gomez.csv
+ventas.to_csv("Unidad2/ventas_originales_rodriguez.csv",encoding='utf-8', index=False)
+
