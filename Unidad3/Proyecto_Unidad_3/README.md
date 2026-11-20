@@ -1,6 +1,6 @@
 # Proyecto Unidad 3
 
-Esta carpeta toma como base el proyecto corregido de las unidades I y II. La presentación editable está en `presentacion/`. Los ocho procedimientos se encuentran en cuatro archivos SQL dentro de `scripts/`, con dos ejemplos por estructura. El índice está en el archivo `05_indices.sql`.
+Esta carpeta toma como base el proyecto corregido de las unidades I y II. La presentación editable está en `presentacion/`. Los ocho procedimientos se encuentran en cuatro archivos SQL dentro de `scripts/`, con dos ejemplos por estructura. El índice está en el archivo `05_indices.sql`. La carpeta `sql/` reúne una copia directa de esos archivos para entregarlos junto con la presentación.
 
 Los CSV originales y limpios se copiaron del proyecto anterior en `csv_originales/` y `csv_limpios/`. No se modifica la base existente al abrir los archivos; los procedimientos solo se crean cuando se ejecutan los scripts.
 
