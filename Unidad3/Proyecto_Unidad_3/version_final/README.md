@@ -2,6 +2,8 @@
 
 La presentación en PowerPoint y PDF contiene 34 diapositivas, los resultados reales de la muestra y las tres fotos de braille compartidas por el equipo. Las fotos originales también están en `inclusion/`.
 
+Los ejemplos T-SQL se muestran con un formato tipo CodeSnap: resaltado por sintaxis, números de línea y marco de editor. El texto del código permanece editable dentro del PowerPoint.
+
 La presentación toma como base el proyecto corregido de las unidades I y II, los cuatro ejemplos recientes de clase, los CSV compartidos por el equipo y el modelo de `pepsi.bacpac`.
 
 ## Archivos para entregar
