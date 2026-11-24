@@ -1,0 +1,304 @@
+RESULTADOS REALES DE SQL SERVER - PROYECTO UNIDAD 3
+Fecha de prueba: 23 de noviembre de 2026
+Base de prueba: pepsi_u3_demo
+Datos: CSV limpios recibidos del equipo (44 productos, 42 lotes, 42 inventarios).
+Las actualizaciones y altas de ejemplo se revirtieron con ROLLBACK.
+
+EDITION
+edicion | version
+Enterprise Developer Edition (64-bit) | 17.0.4075.5
+
+COUNTS
+tabla | registros
+producto | 44
+lote | 42
+inventario_lote | 42
+
+ENCRYPTED_PRICE_ERROR
+numero | mensaje
+547 | The UPDATE statement conflicted with the CHECK constraint "ck_u2_producto_precio". The conflict occurred in database "pepsi_u3_demo", table "proyecto_u2.producto", column 'precio'.
+
+ENCRYPTED_LOT_ERROR
+numero | mensaje
+547 | The INSERT statement conflicted with the FOREIGN KEY constraint "fk_u2_lote_producto". The conflict occurred in database "pepsi_u3_demo", table "proyecto_u2.producto", column 'id_producto'.
+
+ENCRYPTED_LOT_OK
+id_lote | numero_lote | fecha_caducidad
+51 | DEMO-VALIDO | 2027-05-23
+
+SUBQUERY_PRICE
+id_producto | nombre | precio
+40 | Mountain Dew | 291.30
+25 | Mountain Dew | 280.94
+29 | Gatorade | 216.64
+30 | Mountain Dew | 215.59
+34 | Gatorade | 201.87
+31 | Pepsi | 201.03
+11 | Pepsi | 200.96
+33 | 7 Up | 199.10
+47 | Mirinda | 197.07
+26 | Pepsi | 195.28
+49 | Gatorade | 193.58
+39 | Gatorade | 192.40
+22 | Mirinda | 190.56
+45 | Mountain Dew | 187.17
+8 | 7 Up | 185.59
+13 | 7 Up | 176.27
+17 | Mirinda | 152.09
+23 | 7 Up | 149.10
+43 | 7 Up | 147.34
+18 | 7 Up | 147.02
+35 | Mountain Dew | 139.98
+3 | 7 Up | 139.37
+10 | Mountain Dew | 129.82
+
+SUBQUERY_LOTS
+id_lote | numero_lote | fecha_caducidad
+43 | LOT043 | 2027-01-18
+39 | LOT039 | 2027-01-19
+24 | LOT024 | 2027-01-20
+31 | LOT031 | 2027-01-22
+18 | LOT018 | 2027-01-23
+40 | LOT040 | 2027-01-26
+2 | LOT002 | 2027-01-29
+26 | LOT026 | 2027-02-14
+16 | LOT016 | 2027-02-18
+15 | LOT015 | 2027-03-09
+41 | LOT041 | 2027-03-15
+19 | LOT019 | 2027-03-23
+
+IF_PRODUCT
+id_producto | nombre | precio
+2 | Pepsi | 59.43
+[Microsoft][ODBC Driver 18 for SQL Server][SQL Server]El ID no es valido.
+
+IF_ENTRY
+[Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Entrada valida.
+[Microsoft][ODBC Driver 18 for SQL Server][SQL Server]La cantidad no es valida.
+
+WHILE_PRICES
+id_producto | nombre | precio
+2 | Pepsi | 69.43
+3 | 7 Up | 149.37
+8 | 7 Up | 195.59
+9 | Gatorade | 50.84
+10 | Mountain Dew | 139.82
+
+WHILE_WAREHOUSES
+id_almacen | nombre | unidades
+1 | Almacen principal | 9543
+
+CASE_INVENTORY
+id_almacen | id_lote | cantidad | estado
+1 | 2 | 11 | Reponer pronto
+1 | 10 | 30 | Existencia suficiente
+1 | 22 | 41 | Existencia suficiente
+1 | 44 | 42 | Existencia suficiente
+1 | 14 | 66 | Existencia suficiente
+1 | 29 | 70 | Existencia suficiente
+1 | 46 | 77 | Existencia suficiente
+1 | 43 | 77 | Existencia suficiente
+1 | 23 | 85 | Existencia suficiente
+1 | 45 | 90 | Existencia suficiente
+1 | 11 | 111 | Existencia suficiente
+1 | 42 | 118 | Existencia suficiente
+1 | 47 | 118 | Existencia suficiente
+1 | 49 | 119 | Existencia suficiente
+1 | 16 | 126 | Existencia suficiente
+1 | 34 | 142 | Existencia suficiente
+1 | 27 | 142 | Existencia suficiente
+1 | 13 | 147 | Existencia suficiente
+1 | 37 | 183 | Existencia suficiente
+1 | 40 | 194 | Existencia suficiente
+1 | 18 | 200 | Existencia suficiente
+1 | 17 | 203 | Existencia suficiente
+1 | 25 | 205 | Existencia suficiente
+1 | 36 | 212 | Existencia suficiente
+1 | 31 | 220 | Existencia suficiente
+1 | 24 | 229 | Existencia suficiente
+1 | 21 | 254 | Existencia suficiente
+1 | 33 | 281 | Existencia suficiente
+1 | 26 | 281 | Existencia suficiente
+1 | 48 | 337 | Existencia suficiente
+1 | 38 | 349 | Existencia suficiente
+1 | 35 | 361 | Existencia suficiente
+1 | 15 | 378 | Existencia suficiente
+1 | 12 | 393 | Existencia suficiente
+1 | 30 | 419 | Existencia suficiente
+1 | 32 | 442 | Existencia suficiente
+1 | 20 | 446 | Existencia suficiente
+1 | 28 | 452 | Existencia suficiente
+1 | 39 | 452 | Existencia suficiente
+1 | 19 | 469 | Existencia suficiente
+1 | 3 | 481 | Existencia suficiente
+1 | 41 | 490 | Existencia suficiente
+
+CASE_LOTS
+numero_lote | fecha_caducidad | estado
+LOT043 | 2027-01-18 | Vigente
+LOT039 | 2027-01-19 | Vigente
+LOT024 | 2027-01-20 | Vigente
+LOT031 | 2027-01-22 | Vigente
+LOT018 | 2027-01-23 | Vigente
+LOT040 | 2027-01-26 | Vigente
+LOT002 | 2027-01-29 | Vigente
+LOT026 | 2027-02-14 | Vigente
+LOT016 | 2027-02-18 | Vigente
+LOT015 | 2027-03-09 | Vigente
+LOT041 | 2027-03-15 | Vigente
+LOT019 | 2027-03-23 | Vigente
+LOT045 | 2027-03-26 | Vigente
+LOT035 | 2027-04-03 | Vigente
+LOT027 | 2027-04-04 | Vigente
+LOT021 | 2027-04-04 | Vigente
+LOT036 | 2027-04-06 | Vigente
+LOT014 | 2027-04-09 | Vigente
+LOT029 | 2027-04-25 | Vigente
+LOT048 | 2027-05-02 | Vigente
+LOT022 | 2027-05-03 | Vigente
+LOT012 | 2027-05-07 | Vigente
+LOT020 | 2027-05-15 | Vigente
+LOT037 | 2027-05-16 | Vigente
+LOT025 | 2027-05-20 | Vigente
+LOT010 | 2027-05-25 | Vigente
+LOT032 | 2027-06-01 | Vigente
+LOT003 | 2027-06-05 | Vigente
+LOT046 | 2027-06-07 | Vigente
+LOT023 | 2027-06-15 | Vigente
+LOT047 | 2027-07-05 | Vigente
+LOT042 | 2027-07-09 | Vigente
+LOT049 | 2027-07-14 | Vigente
+LOT044 | 2027-07-18 | Vigente
+LOT011 | 2027-07-31 | Vigente
+LOT017 | 2027-08-01 | Vigente
+LOT033 | 2027-08-03 | Vigente
+LOT038 | 2027-08-05 | Vigente
+LOT034 | 2027-08-11 | Vigente
+LOT013 | 2027-09-09 | Vigente
+LOT028 | 2027-09-11 | Vigente
+LOT030 | 2027-09-19 | Vigente
+
+ENCRYPTION
+name | encriptado
+usp_cambiar_precio | 1
+usp_registrar_lote | 1
+
+INDEX_BEFORE
+id_lote | id_producto | numero_lote | fecha_caducidad
+43 | 43 | LOT043 | 2027-01-18
+39 | 39 | LOT039 | 2027-01-19
+24 | 24 | LOT024 | 2027-01-20
+31 | 31 | LOT031 | 2027-01-22
+18 | 18 | LOT018 | 2027-01-23
+40 | 40 | LOT040 | 2027-01-26
+2 | 2 | LOT002 | 2027-01-29
+26 | 26 | LOT026 | 2027-02-14
+16 | 16 | LOT016 | 2027-02-18
+[Microsoft][ODBC Driver 18 for SQL Server][SQL Server]
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+[Microsoft][ODBC Driver 18 for SQL Server][SQL Server]SQL Server parse and compile time: 
+   CPU time = 0 ms, elapsed time = 0 ms.
+[Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+[Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Table 'lote'. Scan count 1, logical reads 2, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+[Microsoft][ODBC Driver 18 for SQL Server][SQL Server]
+ SQL Server Execution Times:
+   CPU time = 1 ms,  elapsed time = 0 ms.
+[Microsoft][ODBC Driver 18 for SQL Server][SQL Server]
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+[Microsoft][ODBC Driver 18 for SQL Server][SQL Server]
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+
+INDEX_AFTER
+id_lote | id_producto | numero_lote | fecha_caducidad
+43 | 43 | LOT043 | 2027-01-18
+39 | 39 | LOT039 | 2027-01-19
+24 | 24 | LOT024 | 2027-01-20
+31 | 31 | LOT031 | 2027-01-22
+18 | 18 | LOT018 | 2027-01-23
+40 | 40 | LOT040 | 2027-01-26
+2 | 2 | LOT002 | 2027-01-29
+26 | 26 | LOT026 | 2027-02-14
+16 | 16 | LOT016 | 2027-02-18
+[Microsoft][ODBC Driver 18 for SQL Server][SQL Server]
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+[Microsoft][ODBC Driver 18 for SQL Server][SQL Server]SQL Server parse and compile time: 
+   CPU time = 0 ms, elapsed time = 0 ms.
+[Microsoft][ODBC Driver 18 for SQL Server][SQL Server]SQL Server parse and compile time: 
+   CPU time = 1 ms, elapsed time = 1 ms.
+[Microsoft][ODBC Driver 18 for SQL Server][SQL Server]SQL Server parse and compile time: 
+   CPU time = 0 ms, elapsed time = 0 ms.
+[Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Table 'lote'. Scan count 1, logical reads 2, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+[Microsoft][ODBC Driver 18 for SQL Server][SQL Server]
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+[Microsoft][ODBC Driver 18 for SQL Server][SQL Server]
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+[Microsoft][ODBC Driver 18 for SQL Server][SQL Server]
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+
+TOTAL_UNITS
+unidades
+9543
+
+DEMO_DATE
+fecha_servidor
+2026-11-23
+
+DATABASE
+pepsi_u3_demo
+
+RECOVERY
+tiempo_ms | productos | lotes | inventarios
+1569 | 44 | 42 | 42
+
+CASE_LOTS_FUTURE
+numero_lote | fecha_caducidad | estado
+LOT043 | 2027-01-18 | Vencido
+LOT039 | 2027-01-19 | Vencido
+LOT024 | 2027-01-20 | Vencido
+LOT031 | 2027-01-22 | Vencido
+LOT018 | 2027-01-23 | Prioridad alta
+LOT040 | 2027-01-26 | Prioridad alta
+LOT002 | 2027-01-29 | Prioridad alta
+LOT026 | 2027-02-14 | Prioridad alta
+LOT016 | 2027-02-18 | Prioridad alta
+LOT015 | 2027-03-09 | Vigente
+LOT041 | 2027-03-15 | Vigente
+LOT019 | 2027-03-23 | Vigente
+LOT045 | 2027-03-26 | Vigente
+LOT035 | 2027-04-03 | Vigente
+LOT021 | 2027-04-04 | Vigente
+LOT027 | 2027-04-04 | Vigente
+LOT036 | 2027-04-06 | Vigente
+LOT014 | 2027-04-09 | Vigente
+LOT029 | 2027-04-25 | Vigente
+LOT048 | 2027-05-02 | Vigente
+LOT022 | 2027-05-03 | Vigente
+LOT012 | 2027-05-07 | Vigente
+LOT020 | 2027-05-15 | Vigente
+LOT037 | 2027-05-16 | Vigente
+LOT025 | 2027-05-20 | Vigente
+LOT010 | 2027-05-25 | Vigente
+LOT032 | 2027-06-01 | Vigente
+LOT003 | 2027-06-05 | Vigente
+LOT046 | 2027-06-07 | Vigente
+LOT023 | 2027-06-15 | Vigente
+LOT047 | 2027-07-05 | Vigente
+LOT042 | 2027-07-09 | Vigente
+LOT049 | 2027-07-14 | Vigente
+LOT044 | 2027-07-18 | Vigente
+LOT011 | 2027-07-31 | Vigente
+LOT017 | 2027-08-01 | Vigente
+LOT033 | 2027-08-03 | Vigente
+LOT038 | 2027-08-05 | Vigente
+LOT034 | 2027-08-11 | Vigente
+LOT013 | 2027-09-09 | Vigente
+LOT028 | 2027-09-11 | Vigente
+LOT030 | 2027-09-19 | Vigente
+
